@@ -1,0 +1,2812 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Jeison Molina — Fullstack, RPA & Soporte TI</title>
+  <meta name="description" content="Portafolio de Jeison Molina. Ingeniero de Sistemas y Desarrollador Fullstack, Especialista en Automatización RPA (Python, Pandas, n8n) y Soporte TI N1/N2." />
+
+  <!-- Modern Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style is:global>
+    /* ── Emil Kowalski & Fluid Motion Design System ── */
+    :root {
+      --bg-dark: #000000;
+      --bg-surface: #09090b;
+      --bg-card: rgba(18, 18, 22, 0.72);
+      --bg-card-hover: rgba(26, 26, 32, 0.85);
+      --bg-elevated: #16161a;
+
+      --text-main: #f4f4f5;
+      --text-muted: #a1a1aa;
+      --text-dim: #71717a;
+
+      --accent-blue: #38bdf8;
+      --accent-emerald: #34d399;
+      --accent-amber: #fbbf24;
+      --accent-purple: #c084fc;
+
+      --role-color: var(--accent-blue);
+      --role-glow: rgba(56, 189, 248, 0.22);
+
+      --border-subtle: rgba(255, 255, 255, 0.07);
+      --border-card: rgba(255, 255, 255, 0.1);
+      --border-focus: rgba(255, 255, 255, 0.28);
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-xl: 30px;
+      --radius-pill: 9999px;
+
+      --spring-physics: cubic-bezier(0.16, 1, 0.3, 1);
+      --header-bg: rgba(0, 0, 0, 0.65);
+    }
+
+    /* ── Apple Light Mode Design System ── */
+    html[data-theme="light"] {
+      --bg-dark: #fbfbfd;
+      --bg-surface: #f5f5f7;
+      --bg-card: rgba(255, 255, 255, 0.92);
+      --bg-card-hover: #ffffff;
+      --bg-elevated: #ffffff;
+      --header-bg: rgba(251, 251, 253, 0.82);
+
+      --text-main: #1d1d1f;
+      --text-muted: #6e6e73;
+      --text-dim: #86868b;
+
+      --accent-blue: #0071e3;
+      --accent-emerald: #059669;
+      --accent-amber: #d97706;
+      --accent-purple: #7c3aed;
+
+      --role-color: #0071e3;
+      --role-glow: rgba(0, 113, 227, 0.15);
+
+      --border-subtle: rgba(0, 0, 0, 0.07);
+      --border-card: rgba(0, 0, 0, 0.11);
+      --border-focus: rgba(0, 113, 227, 0.45);
+    }
+
+    /* ── Atmospheric Rotating Background Graphic (Scroll-Driven) ── */
+    .spinning-bg-container {
+      position: fixed;
+      top: 6vh;
+      right: -240px;
+      width: 680px;
+      height: 680px;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      opacity: 0.28;
+      transition: opacity 0.4s ease;
+      mix-blend-mode: screen;
+    }
+    html[data-theme="light"] .spinning-bg-container {
+      mix-blend-mode: multiply;
+      opacity: 0.16;
+    }
+    .spinning-bg-orb {
+      width: 100%;
+      height: 100%;
+      transform-origin: center center;
+      will-change: transform;
+    }
+
+    /* ── Hero Profile Avatar ── */
+    .hero-profile-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 1.5rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-card);
+      padding: 6px 16px 6px 6px;
+      border-radius: var(--radius-pill);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      transition: all 0.3s var(--spring-physics);
+    }
+    .hero-profile-row:hover {
+      border-color: var(--role-color);
+      transform: translateY(-2px);
+    }
+    html[data-theme="light"] .hero-profile-row {
+      background: rgba(0, 0, 0, 0.035);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+    .hero-avatar-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid var(--role-color);
+      flex-shrink: 0;
+      box-shadow: 0 0 14px var(--role-glow);
+    }
+    .hero-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── Contact Profile Avatar ── */
+    .contact-avatar-wrapper {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem auto;
+      border-radius: 50%;
+      border: 3px solid var(--role-color);
+      box-shadow: 0 0 24px var(--role-glow);
+    }
+    .contact-avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .contact-verified-badge {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 24px;
+      height: 24px;
+      background: var(--accent-emerald);
+      color: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      border: 2px solid #000;
+    }
+
+    /* ── Theme Toggle Button ── */
+    .theme-toggle-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-card);
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.25s var(--spring-physics);
+      flex-shrink: 0;
+    }
+    .theme-toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+      transform: scale(1.08) rotate(15deg);
+      border-color: var(--role-color);
+    }
+    html[data-theme="light"] .theme-toggle-btn {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: rgba(0, 0, 0, 0.12);
+    }
+    html[data-theme="light"] .theme-toggle-btn:hover {
+      background: rgba(0, 0, 0, 0.09);
+    }
+
+    /* ── Light Mode Component Adjustments ── */
+    html[data-theme="light"] body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+    }
+    html[data-theme="light"] .top-header {
+      background: var(--header-bg);
+      border-color: var(--border-subtle);
+    }
+    html[data-theme="light"] .ambient-sphere {
+      background: radial-gradient(circle, rgba(0, 113, 227, 0.08) 0%, rgba(200, 200, 220, 0) 70%);
+    }
+    html[data-theme="light"] .hero-title .hero-gradient-text {
+      background: linear-gradient(180deg, #1d1d1f 0%, #434344 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    html[data-theme="light"] .bento-card,
+    html[data-theme="light"] .project-card {
+      background: var(--bg-card);
+      border-color: var(--border-card);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    }
+    html[data-theme="light"] .bento-card:hover,
+    html[data-theme="light"] .project-card:hover {
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      border-color: var(--border-focus);
+    }
+    html[data-theme="light"] .btn-glass {
+      background: rgba(0, 0, 0, 0.04);
+      color: #1d1d1f;
+      border-color: rgba(0, 0, 0, 0.12);
+    }
+    html[data-theme="light"] .btn-solid {
+      background: #1d1d1f;
+      color: #ffffff;
+    }
+    html[data-theme="light"] .role-switcher {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: rgba(0, 0, 0, 0.09);
+    }
+    html[data-theme="light"] .role-btn {
+      color: #6e6e73;
+    }
+    html[data-theme="light"] .role-btn.active {
+      color: #1d1d1f;
+    }
+    html[data-theme="light"] .role-glider {
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    html[data-theme="light"] .agent-visualizer {
+      background: #ffffff;
+      border-color: var(--border-card);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+    }
+    html[data-theme="light"] .agent-nav-bar {
+      background: rgba(0, 0, 0, 0.02);
+      border-color: var(--border-subtle);
+    }
+    html[data-theme="light"] .pipeline-canvas {
+      background: radial-gradient(circle at 50% 20%, rgba(235, 238, 245, 0.9) 0%, rgba(255, 255, 255, 1) 75%);
+    }
+    html[data-theme="light"] .pipeline-step-card {
+      background: #ffffff;
+      border-color: rgba(0, 0, 0, 0.09);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    }
+    html[data-theme="light"] .step-title {
+      color: #1d1d1f;
+    }
+    html[data-theme="light"] .agent-spec-panel {
+      background: #fbfbfd;
+    }
+    html[data-theme="light"] .agent-info-col h3 {
+      color: #1d1d1f;
+    }
+    html[data-theme="light"] .agent-stat-pill {
+      background: #ffffff;
+      border-color: rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+    html[data-theme="light"] .agent-stat-pill span:last-child {
+      color: #1d1d1f;
+    }
+    html[data-theme="light"] .roi-calc-container {
+      background: linear-gradient(180deg, #ffffff 0%, #f7f7f9 100%);
+      border-color: var(--border-card);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+    }
+    html[data-theme="light"] .roi-results-box {
+      background: rgba(0, 0, 0, 0.03);
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+    html[data-theme="light"] .slider-label {
+      color: #1d1d1f;
+    }
+    html[data-theme="light"] .apple-range {
+      background: rgba(0, 0, 0, 0.1);
+    }
+    html[data-theme="light"] .tech-ribbon-item {
+      background: #ffffff;
+      border-color: rgba(0, 0, 0, 0.08);
+      color: #1d1d1f;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+    html[data-theme="light"] .project-heading {
+      color: #1d1d1f;
+    }
+    html[data-theme="light"] .bottom-thumb-bar {
+      background: rgba(251, 251, 253, 0.88);
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+    html[data-theme="light"] .ai-bubble {
+      background: rgba(255, 255, 255, 0.9);
+      color: #1d1d1f;
+      border-color: rgba(0, 0, 0, 0.12);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    html[data-theme="light"] .sheet-panel {
+      background: #ffffff;
+      color: #1d1d1f;
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+      padding-bottom: 84px;
+    }
+
+    @media (min-width: 1024px) {
+      body {
+        padding-bottom: 0;
+      }
+    }
+
+    /* ── Instant Pointer Feedback (Kill Latency rule) ── */
+    button, a, .clickable {
+      cursor: pointer;
+      touch-action: manipulation;
+      user-select: none;
+    }
+    button:active, a.btn:active, .card-interactive:active {
+      transform: scale(0.975);
+      transition: transform 90ms ease-out;
+    }
+
+    /* ── Floating Header ── */
+    .top-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(24px) saturate(190%);
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      transition: background 0.3s ease;
+    }
+
+    .header-inner {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.03));
+      border: 1px solid var(--border-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 900;
+      color: var(--role-color);
+      transition: color 0.3s ease;
+    }
+
+    .nav-menu {
+      display: none;
+      list-style: none;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .nav-menu {
+        display: flex;
+      }
+    }
+
+    .nav-menu a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      transition: color 0.15s ease;
+    }
+    .nav-menu a:hover {
+      color: #fff;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    /* ── Snappy Modern Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.45rem 1.05rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: all 0.2s var(--spring-physics);
+    }
+
+    .btn-solid {
+      background: #ffffff;
+      color: #000000;
+    }
+    .btn-solid:hover {
+      background: #e4e4e7;
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-main);
+      border-color: var(--border-card);
+    }
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--border-focus);
+    }
+
+    /* ── Hero Section (Fluid Dynamics) ── */
+    .hero-section {
+      padding: 110px 1.5rem 70px 1.5rem;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    @media (min-width: 1024px) {
+      .hero-section {
+        padding: 140px 1.5rem 90px 1.5rem;
+      }
+    }
+
+    /* Dynamic Ambient Glow */
+    .ambient-sphere {
+      position: absolute;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 780px;
+      height: 480px;
+      background: radial-gradient(ellipse at center, var(--role-glow) 0%, transparent 70%);
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+      transition: background 0.6s ease;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-pill);
+      background: rgba(52, 211, 153, 0.08);
+      border: 1px solid rgba(52, 211, 153, 0.22);
+      color: var(--accent-emerald);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 10px var(--accent-emerald);
+      animation: pulse-ring 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-ring {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.85); }
+    }
+
+    .hero-title {
+      font-size: clamp(2.75rem, 7vw, 5.25rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.04;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-gradient-text {
+      background: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.6) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-role-text {
+      color: var(--role-color);
+      transition: color 0.35s ease;
+    }
+
+    .hero-desc {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 680px;
+      margin: 0 auto 2.25rem auto;
+      font-weight: 400;
+    }
+
+    /* ── Sliding Spring Segmented Control ── */
+    .role-switcher-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2.75rem;
+      position: relative;
+    }
+
+    .role-switcher {
+      position: relative;
+      display: inline-flex;
+      background: rgba(22, 22, 28, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-pill);
+      padding: 5px;
+      gap: 4px;
+      max-width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .role-switcher::-webkit-scrollbar {
+      display: none;
+    }
+
+    .role-btn {
+      position: relative;
+      z-index: 2;
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      padding: 0.5rem 1.25rem;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .role-btn.active {
+      color: #ffffff;
+    }
+
+    /* Active Gliding Pill */
+    .role-glider {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      height: calc(100% - 10px);
+      background: var(--role-color);
+      border-radius: var(--radius-pill);
+      transition: all 0.3s var(--spring-physics);
+      z-index: 1;
+      box-shadow: 0 4px 18px var(--role-glow);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── Bento Grid (Interactive Spotlight Border) ── */
+    .section-shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 1.5rem 80px 1.5rem;
+    }
+
+    .section-head {
+      margin-bottom: 2rem;
+    }
+    .section-tag {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--role-color);
+      margin-bottom: 0.4rem;
+      transition: color 0.3s ease;
+    }
+    .section-title {
+      font-size: clamp(1.85rem, 4vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+      .bento-grid {
+        grid-template-columns: repeat(12, 1fr);
+      }
+    }
+
+    .bento-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s var(--spring-physics), border-color 0.25s ease;
+    }
+
+    .bento-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-focus);
+    }
+
+    /* Spotlight effect border */
+    .bento-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: radial-gradient(450px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(255, 255, 255, 0.22), transparent 40%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .col-12 { grid-column: span 12; }
+    .col-8 { grid-column: span 12; }
+    .col-6 { grid-column: span 12; }
+    .col-4 { grid-column: span 12; }
+
+    @media (min-width: 768px) {
+      .col-8 { grid-column: span 8; }
+      .col-6 { grid-column: span 6; }
+      .col-4 { grid-column: span 4; }
+    }
+
+    /* Metric Display */
+    .metric-num {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+
+    .metric-caption {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    /* ── n8n AI Agents & Workflow Visualizer ── */
+    .agent-visualizer {
+      background: #0b0b0f;
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+      transition: border-color 0.3s ease;
+    }
+    .agent-visualizer:hover {
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .agent-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      background: rgba(255, 255, 255, 0.025);
+      border-bottom: 1px solid var(--border-subtle);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .agent-tabs-group {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+    .agent-tabs-group::-webkit-scrollbar { display: none; }
+
+    .agent-tab-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid transparent;
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s var(--spring-physics);
+      white-space: nowrap;
+    }
+    .agent-tab-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+    .agent-tab-btn.active {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+    .agent-tab-btn:active {
+      transform: scale(0.97);
+    }
+
+    .pipeline-canvas {
+      padding: 1.75rem 1.5rem;
+      background: radial-gradient(circle at 50% 20%, rgba(30, 30, 45, 0.35) 0%, rgba(11, 11, 15, 1) 75%);
+      border-bottom: 1px solid var(--border-subtle);
+      position: relative;
+    }
+
+    .pipeline-steps-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 6px 4px;
+    }
+    .pipeline-steps-wrapper::-webkit-scrollbar { display: none; }
+
+    .pipeline-step-card {
+      flex: 1;
+      min-width: 170px;
+      background: rgba(20, 20, 26, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      backdrop-filter: blur(12px);
+      transition: all 0.3s var(--spring-physics);
+      position: relative;
+    }
+    .pipeline-step-card.pulse-highlight {
+      border-color: var(--accent-emerald) !important;
+      box-shadow: 0 0 20px rgba(52, 211, 153, 0.35);
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    .step-badge {
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+    .step-badge-trigger { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+    .step-badge-agent { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+    .step-badge-db { background: rgba(52, 211, 153, 0.15); color: #34d399; }
+    .step-badge-output { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+
+    .step-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.25rem;
+      line-height: 1.3;
+    }
+    .step-sub {
+      font-size: 0.6875rem;
+      color: var(--text-dim);
+      font-family: 'JetBrains Mono', Consolas, monospace;
+    }
+
+    .pipeline-arrow {
+      color: rgba(255, 255, 255, 0.25);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .pipeline-arrow.active {
+      color: var(--accent-emerald);
+      transform: scale(1.15);
+    }
+
+    .agent-spec-panel {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      background: #09090c;
+    }
+    @media (min-width: 900px) {
+      .agent-spec-panel {
+        grid-template-columns: 1.1fr 1fr;
+      }
+    }
+
+    .agent-info-col h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    .agent-info-col p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .agent-stats-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+    .agent-stat-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      flex-direction: column;
+    }
+    .agent-stat-pill span:first-child {
+      font-size: 0.625rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .agent-stat-pill span:last-child {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .payload-col {
+      background: #060608;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .payload-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      font-size: 0.6875rem;
+    }
+    .payload-json {
+      padding: 1rem;
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      font-size: 0.75rem;
+      line-height: 1.6;
+      color: #d4d4d8;
+      overflow-x: auto;
+      max-height: 220px;
+      margin: 0;
+    }
+
+    .syn-cm { color: #71717a; font-style: italic; }
+    .syn-kw { color: #f43f5e; font-weight: 600; }
+    .syn-fn { color: #a855f7; font-weight: 600; }
+    .syn-st { color: #38bdf8; }
+    .syn-ok { color: #34d399; font-weight: 700; }
+
+    /* ── Tech Ecosystem Ribbon ── */
+    .tech-ribbon {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 1rem 0;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .tech-ribbon::-webkit-scrollbar { display: none; }
+    .tech-ribbon-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: var(--radius-pill);
+      padding: 6px 14px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #d4d4d8;
+      transition: all 0.25s var(--spring-physics);
+    }
+    .tech-ribbon-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    /* ── Interactive ROI Calculator & Hybrid Methodology ── */
+    .roi-calc-container {
+      background: linear-gradient(180deg, #121217 0%, #09090c 100%);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-xl);
+      padding: 2.25rem 2rem;
+      position: relative;
+      overflow: hidden;
+      margin-top: 1.5rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+    .roi-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    @media (min-width: 900px) {
+      .roi-grid {
+        grid-template-columns: 1.15fr 1fr;
+      }
+    }
+    .slider-group {
+      margin-bottom: 1.4rem;
+    }
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+    .slider-label {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: #e4e4e7;
+    }
+    .slider-val {
+      font-size: 0.9375rem;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      color: var(--accent-emerald);
+    }
+    .apple-range {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      outline: none;
+      transition: background 0.2s;
+    }
+    .apple-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #ffffff;
+      cursor: pointer;
+      box-shadow: 0 0 14px rgba(52, 211, 153, 0.6);
+      border: 2px solid #34d399;
+      transition: transform 0.15s ease;
+    }
+    .apple-range::-webkit-slider-thumb:hover {
+      transform: scale(1.18);
+    }
+    .roi-results-box {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      text-align: center;
+    }
+    .roi-stat-highlight {
+      font-size: 2.25rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--accent-emerald);
+      line-height: 1;
+    }
+    .roi-stat-sub {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    /* ── Project Showcase Cards ── */
+    .project-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.3s var(--spring-physics), border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-focus);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.7);
+    }
+
+    .project-thumb {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--spring-physics);
+    }
+
+    .project-card:hover .project-thumb img {
+      transform: scale(1.04);
+    }
+
+    .project-badge-pill {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .project-details {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .project-heading {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .project-summary {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+      flex: 1;
+    }
+
+    .tech-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1.25rem;
+    }
+
+    .tech-pill {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+    .project-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--role-color);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    /* ── Native Fluid Sheet / Drawer (Interruptible Motion) ── */
+    .sheet-scrim {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    @media (min-width: 768px) {
+      .sheet-scrim {
+        align-items: center;
+        padding: 2rem;
+      }
+    }
+
+    .sheet-scrim.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .sheet-panel {
+      background: #121216;
+      border: 1px solid var(--border-card);
+      border-radius: 26px 26px 0 0;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      transform: translateY(100%);
+      transition: transform 0.35s var(--spring-physics);
+    }
+
+    @media (min-width: 768px) {
+      .sheet-panel {
+        border-radius: 26px;
+        max-width: 720px;
+        transform: scale(0.96) translateY(20px);
+      }
+    }
+
+    .sheet-scrim.active .sheet-panel {
+      transform: translateY(0) scale(1);
+    }
+
+    .sheet-drag-handle {
+      width: 36px;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.2);
+      margin: -0.5rem auto 1.25rem auto;
+      display: block;
+    }
+
+    @media (min-width: 768px) {
+      .sheet-drag-handle {
+        display: none;
+      }
+    }
+
+    /* ── Floating AI Quick Assistant ── */
+    .ai-bubble {
+      position: fixed;
+      bottom: 95px;
+      right: 1.5rem;
+      z-index: 800;
+      padding: 0.65rem 1.15rem;
+      border-radius: var(--radius-pill);
+      background: rgba(18, 18, 24, 0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(168, 85, 247, 0.25);
+      transition: all 0.25s var(--spring-physics);
+    }
+
+    @media (min-width: 1024px) {
+      .ai-bubble {
+        bottom: 2rem;
+        right: 2rem;
+      }
+    }
+
+    .ai-bubble:hover {
+      transform: scale(1.04);
+      border-color: rgba(168, 85, 247, 0.6);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 28px rgba(168, 85, 247, 0.5);
+    }
+
+    .ai-sparkle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #38bdf8, #c084fc, #f43f5e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 10px;
+    }
+
+    /* ── Mobile Bottom Thumb Bar ── */
+    .bottom-thumb-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(10, 10, 14, 0.88);
+      backdrop-filter: blur(24px) saturate(200%);
+      -webkit-backdrop-filter: blur(24px) saturate(200%);
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      z-index: 850;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    @media (min-width: 1024px) {
+      .bottom-thumb-bar {
+        display: none;
+      }
+    }
+
+    .thumb-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.625rem;
+      font-weight: 600;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 6px 14px;
+    }
+
+    .thumb-btn.active, .thumb-btn:hover {
+      color: var(--role-color);
+    }
+
+    /* ── Sonner Toast Notification ── */
+    .toast {
+      position: fixed;
+      bottom: 85px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      opacity: 0;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius-pill);
+      background: rgba(28, 28, 32, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-card);
+      color: #fff;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+      z-index: 1200;
+      transition: all 0.28s var(--spring-physics);
+      pointer-events: none;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Atmospheric Rotating Background Graphic (Scroll-Driven) -->
+  <div class="spinning-bg-container" id="spinning-bg-container" aria-hidden="true">
+    <svg class="spinning-bg-orb" id="spinning-bg-orb" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="300" cy="300" r="280" stroke="url(#spin-grad-1)" stroke-width="1.5" stroke-dasharray="10 14" opacity="0.6" />
+      <circle cx="300" cy="300" r="240" stroke="url(#spin-grad-2)" stroke-width="2" opacity="0.8" />
+      <circle cx="300" cy="300" r="200" stroke="url(#spin-grad-1)" stroke-width="1.2" stroke-dasharray="4 8" opacity="0.5" />
+      <circle cx="300" cy="300" r="160" stroke="url(#spin-grad-3)" stroke-width="2.5" opacity="0.7" />
+      <circle cx="300" cy="300" r="120" stroke="url(#spin-grad-2)" stroke-width="1" stroke-dasharray="6 6" opacity="0.4" />
+      <circle cx="300" cy="300" r="80" stroke="url(#spin-grad-1)" stroke-width="2" opacity="0.9" />
+      <path d="M300 20 L300 580 M20 300 L580 300" stroke="url(#spin-grad-2)" stroke-width="1" stroke-dasharray="8 12" opacity="0.3" />
+      <circle cx="300" cy="60" r="6" fill="#38bdf8" />
+      <circle cx="300" cy="540" r="6" fill="#c084fc" />
+      <circle cx="60" cy="300" r="6" fill="#34d399" />
+      <circle cx="540" cy="300" r="6" fill="#fbbf24" />
+      <path d="M300 130 L300 150 M300 450 L300 470 M130 300 L150 300 M450 300 L470 300" stroke="#38bdf8" stroke-width="2.5" opacity="0.8" />
+      <defs>
+        <linearGradient id="spin-grad-1" x1="0" y1="0" x2="600" y2="600" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#38bdf8" />
+          <stop offset="0.5" stop-color="#c084fc" />
+          <stop offset="1" stop-color="#34d399" />
+        </linearGradient>
+        <linearGradient id="spin-grad-2" x1="600" y1="0" x2="0" y2="600" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#34d399" />
+          <stop offset="0.5" stop-color="#38bdf8" />
+          <stop offset="1" stop-color="#c084fc" />
+        </linearGradient>
+        <linearGradient id="spin-grad-3" x1="0" y1="300" x2="600" y2="300" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#c084fc" />
+          <stop offset="1" stop-color="#38bdf8" />
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- Sonner Toast -->
+  <div id="toast" class="toast">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toast-text">Acción exitosa</span>
+  </div>
+
+  <!-- Header -->
+  <header class="top-header">
+    <div class="header-inner">
+      <a href="#" class="brand-logo" style="display: flex; align-items: center; gap: 9px;">
+        <img src="profile-photo.jpg" alt="Jeison Molina" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--role-color);" />
+        <span>JEISON MOLINA</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="#overview">Inicio</a></li>
+        <li><a href="#methodology">Filosofía 10x</a></li>
+        <li><a href="#agents">Agentes n8n</a></li>
+        <li><a href="#projects">Proyectos</a></li>
+        <li><a href="#experience">Experiencia</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <!-- Theme Toggle Button (Light / Dark) -->
+        <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Cambiar tema (Claro / Oscuro)">
+          <svg id="theme-sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="display:none;"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg id="theme-moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button onclick="downloadCV()" class="btn btn-glass">
+          <span id="header-cv-label">Descargar CV</span>
+        </button>
+        <a href="#contact" class="btn btn-solid">Conectar</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="overview" class="hero-section">
+    <div class="ambient-sphere" id="ambient-sphere"></div>
+
+    <div class="hero-content">
+      <!-- Profile Header Pill with Real Photo -->
+      <div class="hero-profile-row">
+        <div class="hero-avatar-box">
+          <img src="profile-photo.jpg" alt="Jeison Molina" class="hero-avatar-img" />
+        </div>
+        <div class="status-badge" style="margin-bottom: 0;">
+          <span class="pulse-dot"></span>
+          <span>DESARROLLO HÍBRIDO // HIGH-CODE + LOW-CODE + IA // BOGOTÁ, CO</span>
+        </div>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="hero-title">
+        <span class="hero-gradient-text">Ingeniería de Software &</span><br />
+        <span id="hero-role-title" class="hero-role-text">Arquitectura Fullstack.</span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p id="hero-role-desc" class="hero-desc">
+        Diseño y construcción de aplicaciones web de alto rendimiento, microservicios REST escalables y flujos de automatización corporativa con React 19, Node.js y Python.
+      </p>
+
+      <!-- Role Switcher with Glider -->
+      <div class="role-switcher-container">
+        <div class="role-switcher" id="role-switcher">
+          <div class="role-glider" id="role-glider"></div>
+          <button class="role-btn active" id="btn-fullstack" onclick="switchProfile('fullstack', this)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Fullstack High-Code
+          </button>
+          <button class="role-btn" id="btn-automation" onclick="switchProfile('automation', this)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/></svg>
+            Agentes IA & Low-Code
+          </button>
+          <button class="role-btn" id="btn-helpdesk" onclick="switchProfile('helpdesk', this)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            CloudOps & DevOps
+          </button>
+        </div>
+      </div>
+
+      <!-- Action CTAs -->
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-solid" style="padding: 0.65rem 1.6rem; font-size: 0.9375rem;">
+          Explorar Proyectos
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <button onclick="downloadCV()" class="btn btn-glass" style="padding: 0.65rem 1.6rem; font-size: 0.9375rem;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar Currículum
+        </button>
+      </div>
+
+      <!-- Tech Ecosystem Ribbon -->
+      <div class="tech-ribbon" style="margin-top: 2rem;">
+        <div class="tech-ribbon-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <span>n8n Workflow Automation</span>
+        </div>
+        <div class="tech-ribbon-item">
+          <span style="color: #c084fc;">🦙</span>
+          <span>Ollama Local LLMs (Llama 3.2)</span>
+        </div>
+        <div class="tech-ribbon-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6Z"/></svg>
+          <span>React 19 & TypeScript</span>
+        </div>
+        <div class="tech-ribbon-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2.5"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          <span>Fastify 5 & Node.js</span>
+        </div>
+        <div class="tech-ribbon-item">
+          <span style="color: #38bdf8;">🐳</span>
+          <span>Docker Compose Stack</span>
+        </div>
+        <div class="tech-ribbon-item">
+          <span style="color: #fbbf24;">☁️</span>
+          <span>Cloudflare Zero Trust</span>
+        </div>
+        <div class="tech-ribbon-item">
+          <span style="color: #38bdf8;">🐘</span>
+          <span>PostgreSQL 16 & PGVector</span>
+        </div>
+        <div class="tech-ribbon-item">
+          <span style="color: #34d399;">🐍</span>
+          <span>Python RPA & Pandas</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bento Grid: Verified Metrics -->
+  <section class="section-shell">
+    <div class="bento-grid">
+      
+      <!-- Card 1 -->
+      <div class="bento-card col-4">
+        <div>
+          <div class="section-tag" style="color: var(--accent-blue);">OPTIMIZACIÓN</div>
+          <div class="metric-num" style="color: var(--accent-blue);">60h+</div>
+        </div>
+        <div class="metric-caption">
+          Ahorro operativo al mes logrado mediante orquestación n8n y bots de ingesta en Python.
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bento-card col-4">
+        <div>
+          <div class="section-tag" style="color: var(--accent-emerald);">ESCALA EN PRODUCCIÓN</div>
+          <div class="metric-num" style="color: var(--accent-emerald);">5.000+</div>
+        </div>
+        <div class="metric-caption">
+          Usuarios activos en el Sistema de Carnetización Digital Institucional con autenticación JWT.
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bento-card col-4">
+        <div>
+          <div class="section-tag" style="color: var(--accent-purple);">BIG DATA & ETL</div>
+          <div class="metric-num" style="color: var(--accent-purple);">50K+</div>
+        </div>
+        <div class="metric-caption">
+          Marcas biométricas ZKTeco normalizadas diariamente en el Proyecto Kairós con Pandas.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Hybrid 10x Methodology & ROI Calculator -->
+  <section class="section-shell" id="methodology">
+    <div class="section-head text-center" style="max-width: 680px; margin: 0 auto 2.25rem auto;">
+      <div class="section-tag" style="color: var(--accent-blue);">// FILOSOFÍA DE DESARROLLO 10X</div>
+      <h2 class="section-title">High-Code + Low-Code + Inteligencia Artificial</h2>
+      <p style="color: var(--text-muted); font-size: 0.9375rem; margin-top: 0.4rem;">
+        Un desarrollador senior no reinventa la rueda escribiendo 500 líneas para lo que n8n resuelve en 10 minutos, pero construye microservicios de alto rendimiento en TypeScript cuando la latencia crítica lo exige.
+      </p>
+    </div>
+
+    <!-- 3 Pillars Grid -->
+    <div class="bento-grid">
+      <div class="bento-card col-4">
+        <div class="section-tag" style="color: var(--accent-blue); margin-bottom: 0.5rem;">01. HIGH-CODE CRÍTICO</div>
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff;">React 19, Fastify & TypeScript</h3>
+        <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6;">
+          Arquitecturas desacopladas, interfaces con respuesta sub-100ms, modelos RBAC y contratos de datos tipados con Zod para máxima seguridad.
+        </p>
+      </div>
+
+      <div class="bento-card col-4">
+        <div class="section-tag" style="color: var(--accent-emerald); margin-bottom: 0.5rem;">02. LOW-CODE & ORQUESTACIÓN</div>
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff;">n8n, Webhooks & Event-Driven</h3>
+        <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6;">
+          Integración visual de APIs, colas de reintentos, automatización de correos institucionales y pipelines ETL entregados en días, no meses.
+        </p>
+      </div>
+
+      <div class="bento-card col-4">
+        <div class="section-tag" style="color: var(--accent-purple); margin-bottom: 0.5rem;">03. IA APLICADA SOBERANA</div>
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff;">Ollama, Llama 3.2 & RAG</h3>
+        <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6;">
+          Razonamiento contextual, extracción semántica de documentos y agentes autónomos ejecutados localmente con $0 en costos de API.
+        </p>
+      </div>
+    </div>
+
+    <!-- Interactive ROI Calculator Widget -->
+    <div class="roi-calc-container">
+      <div class="roi-grid">
+        <div>
+          <span class="section-tag" style="color: var(--accent-emerald); margin-bottom: 0.4rem; display: block;">SIMULADOR DE IMPACTO EMPRESARIAL</span>
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; letter-spacing: -0.02em;">
+            Calcula el retorno de automatizar con IA & n8n
+          </h3>
+          <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6; margin-bottom: 1.75rem;">
+            Ajusta el volumen de trabajo manual repetitivo en tu equipo para proyectar el ahorro mensual en tiempo y costo operativo con soluciones de Jeison Molina.
+          </p>
+
+          <!-- Slider 1: Horas semanales -->
+          <div class="slider-group">
+            <div class="slider-header">
+              <span class="slider-label">Horas semanales en tareas repetitivas / soporte</span>
+              <span class="slider-val" id="roi-hours-val">30 hrs / semana</span>
+            </div>
+            <input type="range" min="5" max="100" value="30" step="5" class="apple-range" id="roi-hours" oninput="updateROI()" />
+          </div>
+
+          <!-- Slider 2: Tarifa por hora -->
+          <div class="slider-group" style="margin-bottom: 0.5rem;">
+            <div class="slider-header">
+              <span class="slider-label">Costo promedio por hora del equipo</span>
+              <span class="slider-val" id="roi-rate-val">$25 USD / hora</span>
+            </div>
+            <input type="range" min="10" max="80" value="25" step="5" class="apple-range" id="roi-rate" oninput="updateROI()" />
+          </div>
+        </div>
+
+        <!-- Dynamic Results Card -->
+        <div class="roi-results-box">
+          <div>
+            <div class="roi-stat-sub">Ahorro operativo proyectado</div>
+            <div class="roi-stat-highlight" id="roi-savings-money">$2,741 USD</div>
+            <div style="font-size: 0.75rem; color: var(--accent-emerald); font-weight: 600; margin-top: 0.25rem;">por mes (~85% de procesos absorbidos)</div>
+          </div>
+
+          <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 1rem;">
+            <div style="font-size: 1rem; font-weight: 700; color: #fff;" id="roi-savings-hours">110 horas operativas recuperadas al mes</div>
+            <div style="font-size: 0.75rem; color: var(--text-dim); margin-top: 0.2rem;">Reducción del 92% en tiempos de respuesta de cara al usuario</div>
+          </div>
+
+          <a href="#contact" class="btn btn-solid" style="padding: 0.75rem; font-size: 0.875rem; justify-content: center;">
+            Automatizar este proceso conmigo ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive n8n AI Agents Section -->
+  <section id="agents" class="section-shell">
+    <div class="section-head text-center" style="max-width: 680px; margin: 0 auto 2.25rem auto;">
+      <div class="section-tag" style="color: var(--accent-emerald);">// INTELIGENCIA ARTIFICIAL & AUTOMATIZACIÓN N8N</div>
+      <h2 class="section-title">Ecosistema de Agentes de IA & n8n</h2>
+      <p style="color: var(--text-muted); font-size: 0.9375rem; margin-top: 0.4rem;">
+        Diseño, orquestación y despliegue de agentes autónomos, pipelines de datos en tiempo real y LLMs locales auto-hospedados con privacidad total y $0 en costos de API.
+      </p>
+    </div>
+
+    <!-- Interactive Workflow Visualizer -->
+    <div class="agent-visualizer">
+      <!-- Top Bar -->
+      <div class="agent-nav-bar">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="console-controls">
+            <div class="c-dot c-r"></div>
+            <div class="c-dot c-y"></div>
+            <div class="c-dot c-g"></div>
+          </div>
+          <span style="font-size: 0.75rem; font-family: 'JetBrains Mono', Consolas, monospace; color: var(--text-dim); font-weight: 600;">
+            n8n Enterprise Engine // v1.64+
+          </span>
+        </div>
+
+        <!-- Agent Tabs -->
+        <div class="agent-tabs-group" id="agent-tabs">
+          <button class="agent-tab-btn active" id="tab-tg" onclick="switchAgent('tg')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            Telegram Supervisor
+          </button>
+          <button class="agent-tab-btn" id="tab-job" onclick="switchAgent('job')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6Z"/></svg>
+            ATS Job Hunter & CV
+          </button>
+          <button class="agent-tab-btn" id="tab-acad" onclick="switchAgent('acad')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>
+            Verificación Académica
+          </button>
+          <button class="agent-tab-btn" id="tab-home" onclick="switchAgent('home')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+            Homeserver Local LLM
+          </button>
+        </div>
+
+        <!-- Action Simulation Button -->
+        <button class="btn btn-solid" onclick="simulatePipeline()" style="font-size: 0.75rem; padding: 0.45rem 0.95rem; gap: 6px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Simular Flujo
+        </button>
+      </div>
+
+      <!-- Pipeline Visual Flow Nodes -->
+      <div class="pipeline-canvas">
+        <div class="pipeline-steps-wrapper" id="pipeline-nodes-container">
+          <!-- Dynamically populated via switchAgent() -->
+        </div>
+      </div>
+
+      <!-- Specification & Live Telemetry Inspector -->
+      <div class="agent-spec-panel">
+        <div class="agent-info-col">
+          <span class="section-tag" id="agent-type-tag" style="color: var(--accent-emerald); margin-bottom: 0.4rem; display: block;">
+            SUPERVISOR AGENT
+          </span>
+          <h3 id="agent-title-text">Agente Orquestador Autónomo Telegram</h3>
+          <p id="agent-mission-text">
+            Recepción continua 24/7 de solicitudes en lenguaje natural mediante Webhooks cifrados, clasificación de intención semántica con modelo Llama 3.2 3B y delegación dinámica a sub-workflows específicos.
+          </p>
+
+          <!-- Key Stats Pills -->
+          <div class="agent-stats-row" id="agent-stats-container">
+            <!-- Dynamically populated -->
+          </div>
+
+          <!-- Tech stack pills -->
+          <div class="tech-badges" id="agent-badges-container">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Real JSON Payload Inspector -->
+        <div class="payload-col">
+          <div class="payload-topbar">
+            <span style="color: #a1a1aa; font-weight: 600;" id="payload-filename">telegram_webhook_payload.json</span>
+            <span style="color: var(--accent-emerald); font-weight: 700;" id="payload-status-badge">● 200 OK // 1.4s</span>
+          </div>
+          <pre class="payload-json" id="payload-code-display">
+            <!-- Dynamically populated -->
+          </pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 Bento Grid Pillars of n8n & AI -->
+    <div class="bento-grid" style="margin-top: 1.5rem;">
+      <div class="bento-card col-6">
+        <div class="section-tag" style="color: var(--accent-blue); margin-bottom: 0.5rem;">ARQUITECTURA DE ENRUTAMIENTO</div>
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff;">Multi-Agente Modular & Sub-Workflows</h3>
+        <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6;">
+          Desacoplamiento entre un agente supervisor central y sub-flujos ejecutados bajo demanda. Incluye manejo estricto de excepciones mediante Dead Letter Queue (DLQ) y reintentos automatizados.
+        </p>
+      </div>
+
+      <div class="bento-card col-6">
+        <div class="section-tag" style="color: var(--accent-emerald); margin-bottom: 0.5rem;">INFERENCIA SOBERANA</div>
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff;">LLMs 100% Locales con Ollama en Homeserver</h3>
+        <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6;">
+          Llama 3.2 3B ejecutándose en servidor Ubuntu dedicado dentro de la red local. Garantiza confidencialidad absoluta de información sensible sin costos recurrentes por tokens de OpenAI o Anthropic.
+        </p>
+      </div>
+
+      <div class="bento-card col-6">
+        <div class="section-tag" style="color: var(--accent-purple); margin-bottom: 0.5rem;">PERSISTENCIA DE ESTADO</div>
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff;">Memoria Conversacional & PostgreSQL 16</h3>
+        <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6;">
+          Almacenamiento de contexto y memoria de diálogo por usuario con ventana de retención (Window Memory). Auditoría de eventos y persistencia relacional optimizada para consultas sub-milisegundo.
+        </p>
+      </div>
+
+      <div class="bento-card col-6">
+        <div class="section-tag" style="color: var(--accent-amber); margin-bottom: 0.5rem;">INTEGRACIÓN EMPRESARIAL</div>
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; color: #fff;">Microsoft Graph API & Cloudflare Tunnels</h3>
+        <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6;">
+          Escucha activa en buzones compartidos de Office 365, generación de borradores desatendidos y exposición segura de webhooks HTTPS mediante Cloudflare Zero Trust sin abrir puertos de red.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Bento Grid -->
+  <section id="projects" class="section-shell">
+    <div class="section-head" style="display: flex; flex-direction: column; md:flex-row; justify-content: space-between; align-items: flex-start; gap: 1rem;">
+      <div>
+        <div class="section-tag">// PROYECTOS & CASOS DE ESTUDIO</div>
+        <h2 class="section-title">Portafolio Técnico</h2>
+      </div>
+
+      <!-- Filters -->
+      <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+        <button class="btn btn-solid" onclick="filterProjects('all')" id="flt-all" style="font-size: 0.75rem;">Todos</button>
+        <button class="btn btn-glass" onclick="filterProjects('fullstack')" id="flt-fullstack" style="font-size: 0.75rem;">Fullstack</button>
+        <button class="btn btn-glass" onclick="filterProjects('automation')" id="flt-automation" style="font-size: 0.75rem;">Automatización</button>
+        <button class="btn btn-glass" onclick="filterProjects('helpdesk')" id="flt-helpdesk" style="font-size: 0.75rem;">Soporte TI</button>
+      </div>
+    </div>
+
+    <div class="bento-grid" id="projects-grid">
+      
+      <!-- Project 1: CoreCredential Enterprise -->
+      <div class="project-card col-6" data-category="fullstack" onclick="openDetail(1)">
+        <div class="project-thumb">
+          <span class="project-badge-pill">Fullstack / Identity</span>
+          <img src="corecredential-preview.png" alt="CoreCredential Enterprise" loading="lazy" />
+        </div>
+        <div class="project-details">
+          <h3 class="project-heading">CoreCredential Enterprise — Identidad Digital Criptográfica</h3>
+          <p class="project-summary">
+            Sistema web de alta disponibilidad para emisión centralizada, validación criptográfica y control de identidad digital universitaria con roles granulares y API REST en Node.js.
+          </p>
+          <div class="tech-badges">
+            <span class="tech-pill">React 19</span>
+            <span class="tech-pill">Node.js</span>
+            <span class="tech-pill">Express</span>
+            <span class="tech-pill">PostgreSQL</span>
+            <span class="tech-pill">JWT</span>
+            <span class="tech-pill">QR Dinámico</span>
+          </div>
+          <span class="project-cta">
+            Ver especificación técnica
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Project 2: UrbanOS Smart Living -->
+      <div class="project-card col-6" data-category="fullstack" onclick="openDetail(2)">
+        <div class="project-thumb">
+          <span class="project-badge-pill" style="color: var(--accent-blue);">Fastify 5 / Real-Time</span>
+          <img src="urbanos-preview.jpg" alt="UrbanOS Smart Living" loading="lazy" />
+        </div>
+        <div class="project-details">
+          <h3 class="project-heading">UrbanOS (Villa MCJ) — Control Residencial & Acceso Inteligente</h3>
+          <p class="project-summary">
+            Plataforma integral para condominios y urbanizaciones: autorización de visitas vehiculares y peatonales, recepción de paquetería en portería, reservas y facturación.
+          </p>
+          <div class="tech-badges">
+            <span class="tech-pill">Fastify 5</span>
+            <span class="tech-pill">TypeScript</span>
+            <span class="tech-pill">Zod</span>
+            <span class="tech-pill">Sequelize</span>
+            <span class="tech-pill">MariaDB</span>
+            <span class="tech-pill">React</span>
+            <span class="tech-pill">Expo Mobile</span>
+          </div>
+          <span class="project-cta" style="color: var(--accent-blue);">
+            Ver especificación técnica
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Project 3: Kairós Engine -->
+      <div class="project-card col-6" data-category="automation" onclick="openDetail(3)">
+        <div class="project-thumb">
+          <span class="project-badge-pill" style="color: var(--accent-emerald);">Python RPA & Data ETL</span>
+          <img src="kairos-dashboard.jpg" alt="Kairós Engine" loading="lazy" />
+        </div>
+        <div class="project-details">
+          <h3 class="project-heading">Kairós Engine — Ingesta Masiva & Conciliación Biométrica</h3>
+          <p class="project-summary">
+            Motor de procesamiento automatizado en Python que extrae, normaliza y desduplica 50.000+ marcas diarias de torniquetes ZKTeco, ahorrando 12 días manuales al mes.
+          </p>
+          <div class="tech-badges">
+            <span class="tech-pill">Python 3.12</span>
+            <span class="tech-pill">Pandas</span>
+            <span class="tech-pill">ZKTeco API</span>
+            <span class="tech-pill">PostgreSQL</span>
+            <span class="tech-pill">Linux Cron</span>
+            <span class="tech-pill">ETL</span>
+          </div>
+          <span class="project-cta" style="color: var(--accent-emerald);">
+            Ver especificación técnica
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Project 4: Hermes Cloud Orchestrator -->
+      <div class="project-card col-6" data-category="automation" onclick="openDetail(4)">
+        <div class="project-thumb">
+          <span class="project-badge-pill" style="color: var(--accent-purple);">Graph API & Azure AD</span>
+          <img src="hermes-dashboard.jpg" alt="Hermes Cloud Orchestrator" loading="lazy" />
+        </div>
+        <div class="project-details">
+          <h3 class="project-heading">Hermes Orchestrator — Sincronización Automática M365</h3>
+          <p class="project-summary">
+            Orquestador híbrido entre sistemas académicos y Azure Active Directory para aprovisionamiento continuo de identidades corporativas y licencias sin intervención manual.
+          </p>
+          <div class="tech-badges">
+            <span class="tech-pill">n8n</span>
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">Microsoft Graph API</span>
+            <span class="tech-pill">Azure AD</span>
+            <span class="tech-pill">OAuth 2.0</span>
+          </div>
+          <span class="project-cta" style="color: var(--accent-purple);">
+            Ver especificación técnica
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Project 5: Nexus AI Platform -->
+      <div class="project-card col-6" data-category="automation" onclick="openDetail(5)">
+        <div class="project-thumb">
+          <span class="project-badge-pill" style="color: var(--accent-purple);">AI Multi-Agent & LLM</span>
+          <img src="nexus-ai-dashboard.jpg" alt="Nexus AI Platform" loading="lazy" />
+        </div>
+        <div class="project-details">
+          <h3 class="project-heading">Nexus AI — Plataforma Multi-Agente Autónoma</h3>
+          <p class="project-summary">
+            Ecosistema de agentes inteligentes con modelos LLM locales (Ollama Llama 3.2), orquestación n8n, memoria en PostgreSQL e integración con bots de Telegram.
+          </p>
+          <div class="tech-badges">
+            <span class="tech-pill">n8n</span>
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">Ollama LLM</span>
+            <span class="tech-pill">LangChain</span>
+            <span class="tech-pill">PostgreSQL</span>
+            <span class="tech-pill">Telegram API</span>
+          </div>
+          <span class="project-cta" style="color: var(--accent-purple);">
+            Ver especificación técnica
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Project 6: Apex ITSM Suite -->
+      <div class="project-card col-6" data-category="helpdesk" onclick="openDetail(6)">
+        <div class="project-thumb">
+          <span class="project-badge-pill" style="color: var(--accent-amber);">ITIL v4 & ITSM</span>
+          <img src="apex-itsm-dashboard.jpg" alt="Apex ITSM Suite" loading="lazy" />
+        </div>
+        <div class="project-details">
+          <h3 class="project-heading">Apex ITSM Suite — Mesa de Ayuda TI & Gestión de Activos</h3>
+          <p class="project-summary">
+            Operación integral bajo ITIL v4 de tickets N1/N2 en ServiceNow y Jira Service Desk, scripts PowerShell para administración de Active Directory y soporte de infraestructura.
+          </p>
+          <div class="tech-badges">
+            <span class="tech-pill">ServiceNow</span>
+            <span class="tech-pill">Jira</span>
+            <span class="tech-pill">Active Directory</span>
+            <span class="tech-pill">PowerShell 7</span>
+            <span class="tech-pill">TCP/IP</span>
+            <span class="tech-pill">ITIL v4</span>
+          </div>
+          <span class="project-cta" style="color: var(--accent-amber);">
+            Ver especificación técnica
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Experience & Background -->
+  <section id="experience" class="section-shell">
+    <div class="section-head">
+      <div class="section-tag">// HISTORIAL PROFESIONAL</div>
+      <h2 class="section-title">Trayectoria & Formación</h2>
+    </div>
+
+    <div class="bento-grid">
+      <!-- Exp 1 -->
+      <div class="bento-card col-6">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+          <span class="section-tag" style="color: var(--accent-blue);">JULIO 2025 – MARZO 2026</span>
+          <span class="tech-pill" style="color: var(--accent-emerald);">Impacto Verificado</span>
+        </div>
+        <h3 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.25rem;">Desarrollador Fullstack & Soporte TI</h3>
+        <p style="color: var(--text-dim); font-size: 0.875rem; margin-bottom: 1rem;">Fundación Universitaria Horizonte // Bogotá, CO</p>
+        <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6;">
+          Liderazgo técnico en el desarrollo del sistema de carnetización institucional (React, Node.js, PostgreSQL). Atención de incidencias N1/N2 en ServiceNow y administración de identidades en Microsoft 365.
+        </p>
+      </div>
+
+      <!-- Exp 2 -->
+      <div class="bento-card col-6">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+          <span class="section-tag" style="color: var(--accent-emerald);">JULIO 2025 – MARZO 2026</span>
+          <span class="tech-pill" style="color: var(--accent-blue);">Automatización</span>
+        </div>
+        <h3 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 0.25rem;">Especialista en Automatización RPA</h3>
+        <p style="color: var(--text-dim); font-size: 0.875rem; margin-bottom: 1rem;">Fundación Universitaria Horizonte // Bogotá, CO</p>
+        <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6;">
+          Arquitectura del Proyecto Kairós (ETL con Python y Pandas para 50k+ logs biométricos diarios) y Proyecto Hermes (sincronización con n8n y Microsoft Graph API).
+        </p>
+      </div>
+
+      <!-- Edu 1 -->
+      <div class="bento-card col-6">
+        <span class="section-tag" style="color: var(--accent-purple); margin-bottom: 0.5rem;">EN CURSO (7MO SEMESTRE)</span>
+        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.25rem;">Ingeniería de Sistemas</h3>
+        <p style="color: var(--text-dim); font-size: 0.875rem;">Corporación Unificada Nacional (CUN)</p>
+      </div>
+
+      <!-- Edu 2 -->
+      <div class="bento-card col-6">
+        <span class="section-tag" style="color: var(--accent-amber); margin-bottom: 0.5rem;">GRADUACIÓN 2026</span>
+        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.25rem;">Tecnólogo en Análisis y Desarrollo de Software</h3>
+        <p style="color: var(--text-dim); font-size: 0.875rem;">Servicio Nacional de Aprendizaje (SENA)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section id="contact" class="section-shell">
+    <div class="bento-card col-12" style="text-align: center; padding: 4rem 1.5rem; background: linear-gradient(180deg, #18181b 0%, #09090b 100%);">
+      <div class="contact-avatar-wrapper" style="margin: 0 auto 1.5rem auto;">
+        <img src="profile-photo.jpg" alt="Jeison Molina" class="contact-avatar-img" />
+        <span class="contact-verified-badge" title="Disponible para contratación"></span>
+      </div>
+      <div class="section-tag" style="margin-bottom: 0.75rem;">CONECTEMOS</div>
+      <h2 class="section-title" style="margin-bottom: 1rem;">¿Listo para trabajar juntos?</h2>
+      <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2.25rem auto;">
+        Disponible para proyectos de desarrollo fullstack, iniciativas de automatización con Python o gestión de infraestructura y soporte TI.
+      </p>
+
+      <div style="display: flex; justify-content: center; gap: 0.875rem; flex-wrap: wrap; margin-bottom: 2rem;">
+        <a href="mailto:andreyyeisonmg@gmail.com" class="btn btn-solid" style="padding: 0.75rem 1.75rem;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          andreyyeisonmg@gmail.com
+        </a>
+        <button onclick="copyEmail()" class="btn btn-glass" style="padding: 0.75rem 1.35rem;">
+          Copiar Correo
+        </button>
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 2rem; color: var(--text-dim); font-size: 0.875rem; margin-bottom: 2rem;">
+        <a href="https://www.linkedin.com/in/jeison-molina12/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">LinkedIn ↗</a>
+        <a href="https://github.com/jeisonmolina" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">GitHub ↗</a>
+        <a href="https://wa.me/573505498014" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">WhatsApp ↗</a>
+      </div>
+
+      <!-- Telemetry Badge -->
+      <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); padding: 6px 16px; border-radius: var(--radius-pill); font-size: 0.6875rem; font-family: 'JetBrains Mono', Consolas, monospace; color: var(--text-dim);">
+        <span class="pulse-dot"></span>
+        <span>HOMESERVER NODE EN LÍNEA // LLAMA 3.2 3B ON-PREMISE // $0 COSTO DE API // N8N V1.64+</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Project Sheet Modal -->
+  <div id="project-sheet" class="sheet-scrim" onclick="closeDetail(event)">
+    <div class="sheet-panel" onclick="event.stopPropagation()">
+      <span class="sheet-drag-handle"></span>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem;">
+        <div>
+          <span id="sheet-tag" class="section-tag" style="display: block; margin-bottom: 0.25rem;">FULLSTACK</span>
+          <h2 id="sheet-title" style="font-size: 1.75rem; font-weight: 800; letter-spacing: -0.035em;">Proyecto</h2>
+        </div>
+        <button onclick="closeDetail()" class="btn btn-glass" style="width: 32px; height: 32px; padding: 0; border-radius: 50%;">✕</button>
+      </div>
+
+      <div style="border-radius: var(--radius-md); overflow: hidden; margin-bottom: 1.5rem; max-height: 280px; background: #000;">
+        <img id="sheet-img" src="" alt="Project view" style="width: 100%; height: 100%; object-fit: cover;" />
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem;">
+        <div>
+          <h4 style="font-size: 0.8125rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem; text-transform: uppercase;">Desafío Técnico</h4>
+          <p id="sheet-prob" style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.6;"></p>
+        </div>
+        <div>
+          <h4 style="font-size: 0.8125rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem; text-transform: uppercase;">Solución Implementada</h4>
+          <p id="sheet-sol" style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.6;"></p>
+        </div>
+        <div>
+          <h4 style="font-size: 0.8125rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; text-transform: uppercase;">Tecnologías</h4>
+          <div id="sheet-chips" class="tech-badges"></div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        <a id="sheet-gh" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-glass" style="flex: 1; min-width: 150px; padding: 0.75rem;">Repositorio Git ↗</a>
+        <a id="sheet-gh-back" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-glass" style="flex: 1; min-width: 150px; padding: 0.75rem; display: none;">Repo Backend ↗</a>
+        <a id="sheet-demo" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-solid" style="flex: 1; min-width: 150px; padding: 0.75rem; display: none;">Probar Demo ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Quick Assistant Bubble -->
+  <button class="ai-bubble" onclick="toggleAIChat()">
+    <div class="ai-sparkle">✦</div>
+    <span>Agente IA (Llama 3.2)</span>
+  </button>
+
+  <!-- AI Chat Sheet -->
+  <div id="ai-chat-scrim" class="sheet-scrim" onclick="toggleAIChat(event)">
+    <div class="sheet-panel" onclick="event.stopPropagation()" style="max-width: 520px;">
+      <span class="sheet-drag-handle"></span>
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <div class="ai-sparkle" style="width: 24px; height: 24px;">✦</div>
+          <div>
+            <h3 style="font-size: 1rem; font-weight: 700;">Agente IA Autónomo de Jeison</h3>
+            <span style="font-size: 0.6875rem; color: var(--accent-emerald);">Llama 3.2 3B On-Premise // En línea</span>
+          </div>
+        </div>
+        <button onclick="toggleAIChat()" class="btn btn-glass" style="width: 32px; height: 32px; padding: 0; border-radius: 50%;">✕</button>
+      </div>
+
+      <!-- Messages Stream -->
+      <div id="ai-messages" style="display: flex; flex-direction: column; gap: 0.75rem; min-height: 220px; max-height: 320px; overflow-y: auto; margin-bottom: 1rem; padding-right: 4px;">
+        <div style="background: rgba(255,255,255,0.06); padding: 0.85rem; border-radius: 16px; font-size: 0.8125rem; line-height: 1.5;">
+          ¡Hola! Soy el agente IA de Jeison Molina ejecutado localmente en su Homeserver. Pregúntame sobre sus soluciones en Low-Code (n8n), desarrollo High-Code (React 19, Fastify) o descarga sus hojas de vida en PDF.
+        </div>
+      </div>
+
+      <!-- Quick prompts -->
+      <div style="display: flex; gap: 6px; overflow-x: auto; margin-bottom: 1rem; padding-bottom: 4px; scrollbar-width: none;">
+        <button class="btn btn-glass" style="font-size: 0.6875rem; white-space: nowrap;" onclick="quickAI('¿Cuál es su experiencia en Python?')">Experiencia en Python</button>
+        <button class="btn btn-glass" style="font-size: 0.6875rem; white-space: nowrap;" onclick="quickAI('¿Qué es el Proyecto Kairós?')">Proyecto Kairós</button>
+        <button class="btn btn-glass" style="font-size: 0.6875rem; white-space: nowrap;" onclick="quickAI('Descargar CV')">Descargar CV</button>
+      </div>
+
+      <!-- Input box -->
+      <div style="display: flex; gap: 0.5rem;">
+        <input type="text" id="ai-input" placeholder="Pregunta sobre habilidades o proyectos..." style="flex: 1; background: rgba(255,255,255,0.07); border: 1px solid var(--border-card); border-radius: var(--radius-pill); padding: 0.65rem 1.15rem; color: #fff; font-size: 0.8125rem; outline: none;" onkeydown="if(event.key==='Enter') sendAI()" />
+        <button onclick="sendAI()" class="btn btn-solid" style="padding: 0.65rem 1.15rem;">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Ergonomic Navigation Bar -->
+  <nav class="bottom-thumb-bar">
+    <a href="#overview" class="thumb-btn active">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Inicio</span>
+    </a>
+    <a href="#projects" class="thumb-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+      <span>Proyectos</span>
+    </a>
+    <button class="thumb-btn" onclick="downloadCV()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <span>CV PDF</span>
+    </button>
+    <a href="#contact" class="thumb-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <span>Contacto</span>
+    </a>
+  </nav>
+
+  <!-- Interactive Script -->
+  <script is:inline>
+    // Window bindings for Astro
+    window.toggleTheme = toggleTheme;
+    window.setTheme = setTheme;
+    window.switchProfile = switchProfile;
+    window.switchAgent = switchAgent;
+    window.switchConsoleMode = switchConsoleMode;
+    window.filterProjects = filterProjects;
+    window.openDetail = openDetail;
+    window.closeDetail = closeDetail;
+    window.toggleAIChat = toggleAIChat;
+    window.quickAI = quickAI;
+    window.sendAI = sendAI;
+    window.copyEmail = copyEmail;
+    window.updateROI = updateROI;
+    window.downloadCV = downloadCV;
+    window.showToast = showToast;
+
+    // State
+    let currentRole = 'fullstack';
+    let currentConsoleMode = 'code';
+
+    const profiles = {
+      fullstack: {
+        title: 'Arquitectura Fullstack & High-Code.',
+        desc: 'Diseño y construcción de aplicaciones web de alto rendimiento, microservicios REST/WebSocket escalables y sistemas desacoplados con React 19, TypeScript, Fastify 5 y PostgreSQL.',
+        color: '#38bdf8',
+        glow: 'rgba(56, 189, 248, 0.22)',
+        cvFile: '/cv-fullstack.pdf',
+        cvTag: 'Fullstack'
+      },
+      automation: {
+        title: 'Agentes de IA & Orquestación Low-Code.',
+        desc: 'Diseño y despliegue de agentes autónomos, integración de LLMs locales (Llama 3.2 con Ollama) y flujos visuales con n8n para acelerar entregas empresariales 10x sin deuda técnica.',
+        color: '#34d399',
+        glow: 'rgba(52, 211, 153, 0.22)',
+        cvFile: '/cv-automation.pdf',
+        cvTag: 'IA & Low-Code'
+      },
+      helpdesk: {
+        title: 'Infraestructura, Docker & CloudOps.',
+        desc: 'Autohospedaje de clústeres privados en Ubuntu Server, redes cifradas con Cloudflare Zero Trust, contenedorización con Docker y administración de identidades en Microsoft 365.',
+        color: '#c084fc',
+        glow: 'rgba(192, 132, 252, 0.22)',
+        cvFile: '/cv-helpdesk.pdf',
+        cvTag: 'CloudOps & TI'
+      }
+    };
+
+    let currentAgent = 'tg';
+
+    const agentsData = {
+      tg: {
+        tag: 'SUPERVISOR AGENT // ROUTER SEMÁNTICO',
+        title: 'Agente Orquestador Autónomo Telegram',
+        mission: 'Recepción continua 24/7 de solicitudes en lenguaje natural mediante Webhooks cifrados, clasificación semántica de intención mediante Llama 3.2 3B y delegación dinámica a sub-workflows específicos con memoria conversacional en PostgreSQL.',
+        file: 'workflow_telegram_supervisor.json',
+        status: '● 200 OK // 1.4s (Inferencia Local)',
+        stats: [
+          { label: 'Costo API', val: '$0 / Mes' },
+          { label: 'Modelo LLM', val: 'Llama 3.2 3B' },
+          { label: 'Disponibilidad', val: '99.9% 24/7' },
+          { label: 'Privacidad', val: '100% On-Premise' }
+        ],
+        chips: ['n8n AI Agent', 'Ollama (Llama 3.2)', 'PostgreSQL Buffer', 'Telegram Bot API', 'LangChain', 'Docker'],
+        nodes: [
+          { badge: 'TRIGGER', badgeClass: 'step-badge-trigger', title: 'Telegram Webhook', sub: 'POST /webhook/telegram' },
+          { badge: 'AI AGENT', badgeClass: 'step-badge-agent', title: 'Ollama Router (Llama 3.2)', sub: 'Clasificación Semántica' },
+          { badge: 'MEMORIA', badgeClass: 'step-badge-db', title: 'PostgreSQL Window Memory', sub: 'Historial 10 Turnos' },
+          { badge: 'DESPACHO', badgeClass: 'step-badge-output', title: 'Sub-Workflow Router', sub: 'Inline Keyboard Response' }
+        ],
+        payload: `{
+  <span class="syn-cm">// Evento capturado en tiempo real</span>
+  <span class="syn-st">"event"</span>: <span class="syn-st">"telegram:message_received"</span>,
+  <span class="syn-st">"chat_id"</span>: <span class="syn-kw">98412093</span>,
+  <span class="syn-st">"user_prompt"</span>: <span class="syn-st">"¿Puedes generar mi certificado y buscar vacantes Tech?"</span>,
+  <span class="syn-st">"llm_analysis"</span>: {
+    <span class="syn-st">"model"</span>: <span class="syn-st">"llama3.2:3b-instruct-q4_K_M"</span>,
+    <span class="syn-st">"intent_detected"</span>: <span class="syn-st">"MULTI_INTENT_DELEGATION"</span>,
+    <span class="syn-st">"confidence"</span>: <span class="syn-ok">0.984</span>,
+    <span class="syn-st">"routed_tools"</span>: [<span class="syn-st">"sub_wf_academic_cert"</span>, <span class="syn-st">"sub_wf_job_search"</span>]
+  },
+  <span class="syn-st">"memory_context"</span>: <span class="syn-st">"postgres://n8n_memory/turn_id_748"</span>,
+  <span class="syn-st">"execution_status"</span>: <span class="syn-ok">"SUCCESS_200_DISPATCHED"</span>
+}`
+      },
+      job: {
+        tag: 'DATA SCRAPING & ATS RESUME OPTIMIZER',
+        title: 'ATS Job Hunter & Adaptador Dinámico de CVs',
+        mission: 'Pipeline programado cada 12h que rastrea vacantes tecnológicas en LinkedIn Guest y portales remotos, extrae requisitos técnicos mediante Regex/NLP y adapta automáticamente la hoja de vida y carta de presentación en PDF según las palabras clave de los filtros ATS (Workday, Taleo).',
+        file: 'workflow_job_search_ats.json',
+        status: '● 200 OK // 4.2s (Scraping + PDF)',
+        stats: [
+          { label: 'Compatibilidad ATS', val: '>88% Score' },
+          { label: 'Frecuencia', val: 'Cron cada 12h' },
+          { label: 'Generación CV', val: 'PDF A4 Dinámico' },
+          { label: 'Ahorro Manual', val: '10h / Semana' }
+        ],
+        chips: ['n8n Scheduled', 'Python ETL', 'Cheerio / Regex', 'Puppeteer PDF', 'ATS Keyword Scoring', 'PostgreSQL'],
+        nodes: [
+          { badge: 'TRIGGER', badgeClass: 'step-badge-trigger', title: 'Schedule Trigger', sub: 'Cron: 0 */12 * * *' },
+          { badge: 'INGESTA', badgeClass: 'step-badge-agent', title: 'Web Scraper & Regex', sub: 'LinkedIn & Portales Tech' },
+          { badge: 'EVALUADOR', badgeClass: 'step-badge-db', title: 'ATS Scoring Engine', sub: 'Comparación STAR / CAR' },
+          { badge: 'ACCION', badgeClass: 'step-badge-output', title: 'Puppeteer PDF Engine', sub: 'CV & Carta Personalizada' }
+        ],
+        payload: `{
+  <span class="syn-cm">// Pipeline de Ingesta y Optimización ATS</span>
+  <span class="syn-st">"pipeline"</span>: <span class="syn-st">"ats_job_hunter_pipeline"</span>,
+  <span class="syn-st">"target_role"</span>: <span class="syn-st">"Fullstack Developer / Automation Engineer"</span>,
+  <span class="syn-st">"scraped_vacancies"</span>: <span class="syn-kw">18</span>,
+  <span class="syn-st">"matched_candidate"</span>: {
+    <span class="syn-st">"ats_score"</span>: <span class="syn-ok">"91.4% COMPLIANT"</span>,
+    <span class="syn-st">"detected_keywords"</span>: [<span class="syn-st">"React 19"</span>, <span class="syn-st">"Node.js"</span>, <span class="syn-st">"n8n"</span>, <span class="syn-st">"Python"</span>, <span class="syn-st">"PostgreSQL"</span>],
+    <span class="syn-st">"cv_generated"</span>: <span class="syn-st">"CV_Jeison_Molina_Tailored_A4.pdf"</span>,
+    <span class="syn-st">"cover_letter"</span>: <span class="syn-st">"Generada con metodología XYZ de Google"</span>
+  },
+  <span class="syn-st">"notification"</span>: <span class="syn-st">"Telegram Channel ID -10029384"</span>,
+  <span class="syn-st">"execution_status"</span>: <span class="syn-ok">"DELIVERED_SUCCESSFULLY"</span>
+}`
+      },
+      acad: {
+        tag: 'EVENT-DRIVEN // MS GRAPH API & PDF ETL',
+        title: 'Verificación Académica & Emisión de Documentos',
+        mission: 'Automatización de buzón compartido en Microsoft 365. Sanitiza el cuerpo del correo, extrae la cédula mediante expresiones regulares, consulta la base de datos institucional en PostgreSQL y compila el certificado oficial en PDF con código QR y entrega desatendida en Outlook.',
+        file: 'workflow_academic_verification.json',
+        status: '● 200 OK // 18s (Ciclo Completo)',
+        stats: [
+          { label: 'Tiempo de Ciclo', val: '18s (Antes 4 días)' },
+          { label: 'SLA Cumplido', val: '100%' },
+          { label: 'Validación', val: 'PostgreSQL Criptográfica' },
+          { label: 'Buzón', val: 'MS Graph Shared Mailbox' }
+        ],
+        chips: ['Microsoft Graph API', 'Outlook Shared Inbox', 'n8n Code Node (JS)', 'PostgreSQL 16', 'PDF Template HTML', 'OAuth 2.0'],
+        nodes: [
+          { badge: 'TRIGGER', badgeClass: 'step-badge-trigger', title: 'MS Graph Outlook Trigger', sub: 'Shared Mailbox Listener' },
+          { badge: 'NLP PARSER', badgeClass: 'step-badge-agent', title: 'Sanitizador & Regex ID', sub: 'Extracción de Cédula/NIT' },
+          { badge: 'DB QUERY', badgeClass: 'step-badge-db', title: 'PostgreSQL Academic DB', sub: 'Validación de Matrícula/Grado' },
+          { badge: 'EMISIÓN', badgeClass: 'step-badge-output', title: 'Outlook Draft Dispatcher', sub: 'PDF Adjunto con QR' }
+        ],
+        payload: `{
+  <span class="syn-cm">// Verificación Académica y Emisión Desatendida</span>
+  <span class="syn-st">"source"</span>: <span class="syn-st">"registro_control@institucion.edu.co"</span>,
+  <span class="syn-st">"student_document"</span>: <span class="syn-kw">1028391823</span>,
+  <span class="syn-st">"db_verification"</span>: {
+    <span class="syn-st">"status"</span>: <span class="syn-ok">"GRADUADO_TITULADO"</span>,
+    <span class="syn-st">"program"</span>: <span class="syn-st">"Ingeniería de Sistemas"</span>,
+    <span class="syn-st">"acta_grado"</span>: <span class="syn-st">"ACT-2025-0891"</span>,
+    <span class="syn-st">"verification_hash"</span>: <span class="syn-st">"e3b0c44298fc1c149afbf4c8996fb92427ae"</span>
+  },
+  <span class="syn-st">"pdf_generated"</span>: <span class="syn-st">"Certificado_Grado_Verificado.pdf"</span>,
+  <span class="syn-st">"outlook_action"</span>: <span class="syn-st">"CREATE_DRAFT_AND_NOTIFY_STAFF"</span>,
+  <span class="syn-st">"sla_reduction"</span>: <span class="syn-ok">"99.6% TIME_SAVED"</span>
+}`
+      },
+      home: {
+        tag: 'INFRAESTRUCTURA HOMESERVER & LOCAL AI',
+        title: 'Cluster Homeserver Privado — Docker & Ollama',
+        mission: 'Infraestructura de hardware propia configurada en Ubuntu Server con Docker Compose. Ejecuta n8n en modo Queue con Redis y PostgreSQL 16, clúster de inferencia local con Ollama (Llama 3.2 3B y Qwen) y túneles seguros Cloudflare Zero Trust para exposición externa sin apertura de puertos.',
+        file: 'docker-compose-homeserver.yml',
+        status: '● EN LÍNEA // Latencia P95 650ms',
+        stats: [
+          { label: 'Costo Infraestructura', val: '$0 / Mes en APIs' },
+          { label: 'Túnel Seguro', val: 'Cloudflare Zero Trust' },
+          { label: 'Contenedores', val: 'Docker Compose' },
+          { label: 'Throughput LLM', val: '38 tokens/s' }
+        ],
+        chips: ['Ubuntu Server 24.04', 'Docker & Compose', 'Ollama (Llama 3.2)', 'Cloudflare Tunnels', 'PostgreSQL 16', 'Redis Queue'],
+        nodes: [
+          { badge: 'RED & TUNEL', badgeClass: 'step-badge-trigger', title: 'Cloudflare Zero Trust', sub: 'Túnel Cifrado Sin Puertos' },
+          { badge: 'RUNTIME', badgeClass: 'step-badge-agent', title: 'Docker Compose Stack', sub: 'n8n + Redis + Postgres' },
+          { badge: 'INFERENCIA', badgeClass: 'step-badge-db', title: 'Ollama Engine', sub: 'Llama 3.2 3B On-Premise' },
+          { badge: 'PERSISTENCIA', badgeClass: 'step-badge-output', title: 'PostgreSQL 16 + PGVector', sub: 'Auditoría & Embeddings' }
+        ],
+        payload: `{
+  <span class="syn-cm">// Telemetría en Vivo de Homeserver</span>
+  <span class="syn-st">"host"</span>: <span class="syn-st">"ubuntu-homeserver-node-01"</span>,
+  <span class="syn-st">"containers_running"</span>: [<span class="syn-st">"n8n-main"</span>, <span class="syn-st">"ollama-server"</span>, <span class="syn-st">"postgres-16"</span>, <span class="syn-st">"cloudflared"</span>],
+  <span class="syn-st">"ollama_inference"</span>: {
+    <span class="syn-st">"model_loaded"</span>: <span class="syn-st">"llama3.2:3b-instruct-q4_K_M"</span>,
+    <span class="syn-st">"speed"</span>: <span class="syn-ok">"38.2 tokens/sec"</span>,
+    <span class="syn-st">"vram_allocated"</span>: <span class="syn-st">"2.2 GB"</span>,
+    <span class="syn-st">"api_costs_incurred"</span>: <span class="syn-ok">"$0.00 USD"</span>
+  },
+  <span class="syn-st">"security"</span>: {
+    <span class="syn-st">"open_router_ports"</span>: <span class="syn-kw">0</span>,
+    <span class="syn-st">"tunnel_provider"</span>: <span class="syn-st">"Cloudflare Zero Trust TLS 1.3"</span>
+  },
+  <span class="syn-st">"uptime"</span>: <span class="syn-ok">"99.98% CONTINUOUS"</span>
+}`
+      }
+    };
+
+    const projectsDB = {
+      1: {
+        tag: 'FULLSTACK / IDENTITY ARCHITECTURE',
+        title: 'CoreCredential Enterprise — Identidad Digital Criptográfica',
+        img: 'corecredential-preview.png',
+        prob: 'La institución educativa requería eliminar carnets físicos de plástico propensos a falsificación y demoras de entrega, gestionando más de 5.000 identidades activas en tiempo real.',
+        sol: 'Arquitectura desacoplada Frontend/Backend con tokens JWT, validación QR rotativo contra base de datos PostgreSQL y control de acceso institucional instantáneo.',
+        chips: ['React 19', 'Node.js', 'Express', 'PostgreSQL', 'Tailwind CSS', 'JWT', 'QR Dinámico'],
+        ghFront: 'https://github.com/jeisonMolina21/CoreCredencialFront',
+        ghBack: 'https://github.com/jeisonMolina21/CoreCredencialBack',
+        demo: null
+      },
+      2: {
+        tag: 'FASTIFY 5 / REAL-TIME ARCHITECTURE',
+        title: 'UrbanOS (Villa MCJ) — Control Residencial & Acceso Inteligente',
+        img: 'urbanos-preview.jpg',
+        prob: 'Desorganización en la portería física, falta de trazabilidad en paquetes y demoras en el ingreso de visitantes autorizados.',
+        sol: 'Backend de ultra-baja latencia con Fastify 5 y validación estricta Zod, base de datos relacional con Sequelize, roles RBAC y módulo de portería en tiempo real.',
+        chips: ['Fastify 5', 'TypeScript', 'Zod', 'Sequelize', 'MariaDB', 'React', 'Expo Mobile', 'Swagger UI'],
+        ghFront: 'https://github.com/jeisonMolina21/Guamal-Front',
+        ghBack: 'https://github.com/jeisonMolina21/Guamal-Back',
+        demo: null
+      },
+      3: {
+        tag: 'PYTHON RPA / DATA PIPELINE',
+        title: 'Kairós Engine — Ingesta Masiva & Conciliación Biométrica',
+        img: 'kairos-dashboard.jpg',
+        prob: 'La conciliación horaria demandaba 12 días completos de digitación manual al mes con alta probabilidad de inconsistencias de nómina.',
+        sol: 'Pipeline automatizado en Python con Pandas para limpieza de datos en memoria, deduplicación de marcas y volcado estructurado a PostgreSQL en menos de 4 minutos.',
+        chips: ['Python 3.12', 'Pandas', 'ZKTeco API', 'PostgreSQL', 'Linux Cron', 'Docker', 'ETL'],
+        gh: 'https://github.com/jeisonMolina21/kairos-biometric-pipeline',
+        demo: null
+      },
+      4: {
+        tag: 'GRAPH API / AZURE AD WORKFLOWS',
+        title: 'Hermes Orchestrator — Sincronización Automática M365',
+        img: 'hermes-dashboard.jpg',
+        prob: 'Desfase de identidades de nuevos profesores y estudiantes, retrasando el acceso a plataformas institucionales al inicio de cada semestre.',
+        sol: 'Flujos en n8n conectados mediante Webhooks y scripts Python con Microsoft Graph API para creación y licenciamiento desatendido en Azure AD.',
+        chips: ['n8n', 'Python', 'Microsoft Graph API', 'Azure AD', 'OAuth 2.0', 'Event-Driven'],
+        gh: 'https://github.com/jeisonMolina21/hermes-cloud-sync',
+        demo: 'https://github.com/jeisonMolina21/hermes-cloud-sync#architecture'
+      },
+      5: {
+        tag: 'AI MULTI-AGENT / OLLAMA LLM',
+        title: 'Nexus AI — Plataforma Multi-Agente Autónoma',
+        img: 'nexus-ai-dashboard.jpg',
+        prob: 'Automatizar la atención de solicitudes complejas y análisis de documentos preservando la privacidad de la información institucional sin costos de nube recurrentes.',
+        sol: 'Despliegue de modelos LLM locales optimizados con Ollama en homeserver privado, orquestados mediante workflows en n8n con persistencia en PostgreSQL.',
+        chips: ['n8n', 'Python', 'Ollama (Llama 3.2)', 'LangChain', 'PostgreSQL', 'Telegram Bot API'],
+        gh: 'https://github.com/jeisonMolina21/nexus-agent-engine',
+        demo: null
+      },
+      6: {
+        tag: 'ITIL V4 / SERVICENOW & ACTIVE DIRECTORY',
+        title: 'Apex ITSM Suite — Mesa de Ayuda TI & Gestión de Activos',
+        img: 'apex-itsm-dashboard.jpg',
+        prob: 'Falta de trazabilidad en los activos informáticos y dispersión de incidentes técnicos sin priorización basada en impacto al negocio.',
+        sol: 'Estandarización bajo ITIL v4, automatización de tareas comunes con PowerShell (desbloqueo de cuentas, auditoría de activos) y monitoreo proactivo de conectividad.',
+        chips: ['ServiceNow', 'Jira Service Desk', 'Active Directory', 'PowerShell 7', 'Redes TCP/IP', 'ITIL v4'],
+        gh: 'https://github.com/jeisonMolina21/apex-itsm-platform',
+        demo: null
+      }
+    };
+
+    // Position glider
+    function updateGlider(btn) {
+      const glider = document.getElementById('role-glider');
+      if (!btn || !glider) return;
+      glider.style.left = `${btn.offsetLeft}px`;
+      glider.style.width = `${btn.offsetWidth}px`;
+    }
+
+    // Role switcher
+    function switchProfile(roleKey, targetBtn) {
+      currentRole = roleKey;
+      const data = profiles[roleKey];
+      if (!data) return;
+
+      document.documentElement.style.setProperty('--role-color', data.color);
+      document.documentElement.style.setProperty('--role-glow', data.glow);
+
+      document.getElementById('hero-role-title').innerText = data.title;
+      document.getElementById('hero-role-desc').innerText = data.desc;
+      document.getElementById('header-cv-label').innerText = `CV (${data.cvTag})`;
+
+      const btn = targetBtn || document.getElementById(`btn-${roleKey}`);
+      document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+      if (btn) {
+        btn.classList.add('active');
+        updateGlider(btn);
+      }
+
+      // Map role to corresponding AI agent
+      if (roleKey === 'fullstack') switchAgent('acad');
+      else if (roleKey === 'automation') switchAgent('job');
+      else if (roleKey === 'helpdesk') switchAgent('home');
+    }
+
+    // Switch active agent
+    function switchAgent(agentKey) {
+      currentAgent = agentKey;
+      const data = agentsData[agentKey];
+      if (!data) return;
+
+      // Update tabs
+      ['tg', 'job', 'acad', 'home'].forEach(k => {
+        const btn = document.getElementById(`tab-${k}`);
+        if (btn) btn.classList.toggle('active', k === agentKey);
+      });
+
+      // Update Header info
+      const typeTag = document.getElementById('agent-type-tag');
+      if (typeTag) typeTag.innerText = data.tag;
+      const titleText = document.getElementById('agent-title-text');
+      if (titleText) titleText.innerText = data.title;
+      const missionText = document.getElementById('agent-mission-text');
+      if (missionText) missionText.innerText = data.mission;
+      const filename = document.getElementById('payload-filename');
+      if (filename) filename.innerText = data.file;
+      const statusBadge = document.getElementById('payload-status-badge');
+      if (statusBadge) statusBadge.innerHTML = data.status;
+
+      // Stats pills
+      const statsContainer = document.getElementById('agent-stats-container');
+      if (statsContainer) {
+        statsContainer.innerHTML = data.stats.map(s => `
+          <div class="agent-stat-pill">
+            <span>${s.label}</span>
+            <span>${s.val}</span>
+          </div>
+        `).join('');
+      }
+
+      // Badges
+      const badgesContainer = document.getElementById('agent-badges-container');
+      if (badgesContainer) {
+        badgesContainer.innerHTML = data.chips.map(c => `
+          <span class="tech-pill">${c}</span>
+        `).join('');
+      }
+
+      // Render Pipeline Nodes
+      const nodesContainer = document.getElementById('pipeline-nodes-container');
+      if (nodesContainer) {
+        nodesContainer.innerHTML = data.nodes.map((n, i) => `
+          <div class="pipeline-step-card" id="step-node-${i}">
+            <span class="step-badge ${n.badgeClass}">${n.badge}</span>
+            <div class="step-title">${n.title}</div>
+            <div class="step-sub">${n.sub}</div>
+          </div>
+          ${i < data.nodes.length - 1 ? `
+            <div class="pipeline-arrow" id="step-arrow-${i}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          ` : ''}
+        `).join('');
+      }
+
+      // Payload JSON
+      const codeDisplay = document.getElementById('payload-code-display');
+      if (codeDisplay) codeDisplay.innerHTML = data.payload;
+    }
+
+    // Simulate animated pipeline execution
+    function simulatePipeline() {
+      const data = agentsData[currentAgent];
+      if (!data) return;
+
+      // Pulse animation across nodes in sequence
+      data.nodes.forEach((_, i) => {
+        setTimeout(() => {
+          const card = document.getElementById(`step-node-${i}`);
+          const arrow = document.getElementById(`step-arrow-${i}`);
+          if (card) {
+            card.classList.add('pulse-highlight');
+            setTimeout(() => card.classList.remove('pulse-highlight'), 550);
+          }
+          if (arrow) {
+            arrow.classList.add('active');
+            setTimeout(() => arrow.classList.remove('active'), 550);
+          }
+        }, i * 240);
+      });
+
+      setTimeout(() => {
+        showToast(`Flujo "${data.title}" completado con éxito (200 OK)`);
+      }, data.nodes.length * 240);
+    }
+
+    // CV Download
+    function downloadCV() {
+      const data = profiles[currentRole];
+      const link = document.createElement('a');
+      link.href = data.cvFile;
+      link.download = `CV_Jeison_Molina_${data.cvTag}.pdf`;
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast(`Descargando CV de ${data.cvTag}...`);
+    }
+
+    // Project filters
+    function filterProjects(cat) {
+      ['all', 'fullstack', 'automation', 'helpdesk'].forEach(c => {
+        const b = document.getElementById(`flt-${c}`);
+        if (b) {
+          if (c === cat) {
+            b.className = 'btn btn-solid';
+          } else {
+            b.className = 'btn btn-glass';
+          }
+        }
+      });
+
+      const cards = document.querySelectorAll('#projects-grid .project-card');
+      cards.forEach(card => {
+        const c = card.getAttribute('data-category');
+        if (cat === 'all' || c === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Project sheet detail
+    function openDetail(id) {
+      const p = projectsDB[id];
+      if (!p) return;
+
+      document.getElementById('sheet-tag').innerText = p.tag;
+      document.getElementById('sheet-title').innerText = p.title;
+      document.getElementById('sheet-img').src = p.img;
+      document.getElementById('sheet-prob').innerText = p.prob;
+      document.getElementById('sheet-sol').innerText = p.sol;
+
+      const chips = document.getElementById('sheet-chips');
+      chips.innerHTML = p.chips.map(c => `<span class="tech-pill">${c}</span>`).join('');
+
+      const ghBtn = document.getElementById('sheet-gh');
+      ghBtn.href = p.gh || p.ghFront || '#';
+      ghBtn.innerText = p.ghBack ? 'Repo Frontend ↗' : 'Repositorio Git ↗';
+
+      const ghBackBtn = document.getElementById('sheet-gh-back');
+      if (p.ghBack) {
+        ghBackBtn.href = p.ghBack;
+        ghBackBtn.style.display = 'inline-flex';
+      } else {
+        ghBackBtn.style.display = 'none';
+      }
+
+      const demoBtn = document.getElementById('sheet-demo');
+      if (p.demo) {
+        demoBtn.href = p.demo;
+        demoBtn.style.display = 'inline-flex';
+      } else {
+        demoBtn.style.display = 'none';
+      }
+
+      document.getElementById('project-sheet').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDetail() {
+      document.getElementById('project-sheet').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // AI Chat modal
+    function toggleAIChat() {
+      const scrim = document.getElementById('ai-chat-scrim');
+      scrim.classList.toggle('active');
+      if (scrim.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => document.getElementById('ai-input').focus(), 250);
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+
+    function quickAI(prompt) {
+      document.getElementById('ai-input').value = prompt;
+      sendAI();
+    }
+
+    function sendAI() {
+      const input = document.getElementById('ai-input');
+      const val = input.value.trim();
+      if (!val) return;
+
+      const container = document.getElementById('ai-messages');
+      container.innerHTML += `
+        <div style="background: var(--role-color); color: #000; font-weight: 600; padding: 0.75rem 1rem; border-radius: 16px; align-self: flex-end; max-width: 80%; font-size: 0.8125rem;">
+          ${val}
+        </div>
+      `;
+      input.value = '';
+      container.scrollTop = container.scrollHeight;
+
+      setTimeout(() => {
+        let reply = "Jeison Molina es desarrollador Fullstack (React 19, Node.js, PostgreSQL), Especialista en Automatización RPA (Python, Pandas, n8n) y Soporte TI N1/N2.";
+        const l = val.toLowerCase();
+        if (l.includes('python') || l.includes('kairós') || l.includes('automatiz')) {
+          reply = "En Automatización, Jeison creó el **Proyecto Kairós**, pipeline ETL con Pandas para sincronizar 50.000+ marcas de torniquetes ZKTeco diarias, ahorrando 12 días manuales al mes.";
+        } else if (l.includes('cv') || l.includes('hoja de vida') || l.includes('curriculum')) {
+          reply = "Puedes descargar sus 3 CVs en PDF aquí mismo:<br/><br/>• <a href='/cv-fullstack.pdf' target='_blank' style='color:var(--accent-blue);'>CV Fullstack</a><br/>• <a href='/cv-automation.pdf' target='_blank' style='color:var(--accent-emerald);'>CV Automatización</a><br/>• <a href='/cv-helpdesk.pdf' target='_blank' style='color:var(--accent-amber);'>CV Soporte TI</a>";
+        } else if (l.includes('fullstack') || l.includes('react') || l.includes('carnet')) {
+          reply = "Como Fullstack, diseñó el Sistema de Carnetización Digital Institucional con React 19, API REST en Node.js/Express, PostgreSQL y validación QR criptográfica.";
+        }
+
+        container.innerHTML += `
+          <div style="background: rgba(255,255,255,0.06); padding: 0.85rem; border-radius: 16px; font-size: 0.8125rem; line-height: 1.5;">
+            ${reply}
+          </div>
+        `;
+        container.scrollTop = container.scrollHeight;
+      }, 350);
+    }
+
+    // Toast
+    function copyEmail() {
+      navigator.clipboard.writeText("andreyyeisonmg@gmail.com");
+      showToast("Email copiado al portapapeles");
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      document.getElementById('toast-text').innerText = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2400);
+    }
+
+    // Spotlight mouse tracking effect for all bento cards
+    document.querySelectorAll('.bento-card, .project-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    // Interactive ROI Calculator logic
+    function updateROI() {
+      const hoursSlider = document.getElementById('roi-hours');
+      const rateSlider = document.getElementById('roi-rate');
+      if (!hoursSlider || !rateSlider) return;
+
+      const hours = parseInt(hoursSlider.value);
+      const rate = parseInt(rateSlider.value);
+
+      document.getElementById('roi-hours-val').innerText = `${hours} hrs / semana`;
+      document.getElementById('roi-rate-val').innerText = `$${rate} USD / hora`;
+
+      // 85% of routine manual tasks automated via n8n & local AI
+      const monthlySavedHours = Math.round(hours * 4.3 * 0.85);
+      const monthlySavingsUSD = Math.round(monthlySavedHours * rate);
+
+      document.getElementById('roi-savings-money').innerText = `$${monthlySavingsUSD.toLocaleString('en-US')} USD`;
+      document.getElementById('roi-savings-hours').innerText = `${monthlySavedHours} horas operativas recuperadas al mes`;
+    }
+
+    // Theme Management (Light / Dark Mode with Apple Standards & Persistence)
+    function setTheme(theme) {
+      const sun = document.getElementById('theme-sun-icon');
+      const moon = document.getElementById('theme-moon-icon');
+      if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        if (sun) sun.style.display = 'block';
+        if (moon) moon.style.display = 'none';
+        localStorage.setItem('jm_portfolio_theme', 'light');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        if (sun) sun.style.display = 'none';
+        if (moon) moon.style.display = 'block';
+        localStorage.setItem('jm_portfolio_theme', 'dark');
+      }
+    }
+
+    function toggleTheme() {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      setTheme(isLight ? 'dark' : 'light');
+      showToast(isLight ? 'Modo Oscuro activado' : 'Modo Claro activado');
+    }
+
+    function initTheme() {
+      const saved = localStorage.getItem('jm_portfolio_theme');
+      if (saved) {
+        setTheme(saved);
+      } else {
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDark ? 'dark' : 'dark');
+      }
+    }
+
+    // Atmospheric rotating background graphic (smooth scroll-linked animation)
+    let scrollTicking = false;
+    function updateScrollRotation() {
+      const orb = document.getElementById('spinning-bg-orb');
+      if (!orb) return;
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      orb.style.transform = `rotate(${scrollY * 0.14}deg)`;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) {
+        window.requestAnimationFrame(() => {
+          updateScrollRotation();
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    }, { passive: true });
+
+    // Keyboard shortcuts & initial setup
+    function initApp() {
+      initTheme();
+      updateScrollRotation();
+      const activeBtn = document.getElementById('btn-fullstack');
+      updateGlider(activeBtn);
+      switchAgent('tg');
+      updateROI();
+    }
+
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', initApp);
+    } else {
+      initApp();
+    }
+
+    window.addEventListener('resize', () => {
+      const activeBtn = document.querySelector('.role-btn.active');
+      updateGlider(activeBtn);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT') return;
+      if (e.key === '1') switchProfile('fullstack');
+      if (e.key === '2') switchProfile('automation');
+      if (e.key === '3') switchProfile('helpdesk');
+      if (e.key === 'k' || e.key === 'K') toggleAIChat();
+      if (e.key === 'Escape') {
+        closeDetail();
+        document.getElementById('ai-chat-scrim').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+</body>
+</html>

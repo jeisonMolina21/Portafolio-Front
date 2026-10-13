@@ -1,0 +1,169 @@
+/** @jsxImportSource react */
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, Globe, LogOut, Code, ArrowRight, Zap } from 'lucide-react';
+import LoginModal from './LoginModal';
+import MobileMenu from './navigation-parts/MobileMenu';
+import { useLanguage } from '../context/LanguageContext';
+import { useAuthStore } from '../store/useAuthStore';
+import { cn } from '../utils/cn';
+
+const Navigation = () => {
+  const { isAdmin, login, logout } = useAuthStore();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { lang, setLang, t } = useLanguage();
+
+  useEffect(() => {
+    // Sync with localStorage on mount
+    const token = localStorage.getItem('token');
+    if (token && !isAdmin) {
+      login(token);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleLoginSuccess = (token: string) => {
+    login(token);
+    setIsLoginModalOpen(false);
+  };
+
+  const navItems = [
+    { key: 'nav.about', href: '#about' },
+
+    { key: 'nav.projects', href: '#projects' },
+    { key: 'nav.experience', href: '#experience' },
+    { key: 'nav.education', href: '#education' },
+    { key: 'nav.contact', href: '#contact' }
+  ];
+
+  return (
+    <nav className={cn("nav-root", isScrolled ? "py-4" : "py-8")}>
+      <div className="container-custom">
+        <motion.div 
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          className={cn("nav-container-wrapper", isScrolled ? "nav-scrolled" : "nav-top")}
+        >
+          {/* Logo */}
+          <div className="flex items-center gap-4">
+            <a 
+              href="/"
+              className="nav-logo-btn group"
+            >
+              <div className="nav-logo-icon-box">
+                <Code size={20} />
+              </div>
+              <p className="nav-logo-text">
+                JEI<span className="text-primary italic">SON</span>
+              </p>
+            </a>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="nav-items-desktop">
+            {navItems.map((item) => (
+              <a key={item.key} href={item.href} className="nav-link group">
+                {t(item.key)}
+                <span className="nav-link-underline"></span>
+              </a>
+            ))}
+          </div>
+
+          <div className="nav-actions">
+            {/* Theme Toggle */}
+            <button
+              onClick={() => {
+                const isDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+              }}
+              className="nav-lang-btn"
+              aria-label="Alternar modo oscuro/claro"
+            >
+              <Zap size={16} className="text-primary-bright" />
+            </button>
+
+            {/* Language Switcher */}
+            <button 
+              onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
+              className="nav-lang-btn group"
+              aria-label={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+              title={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+            >
+              <Globe size={16} className="group-hover:rotate-12 transition-transform" />
+            </button>
+
+            {/* Admin Login Button */}
+            {!isAdmin && (
+              <button 
+                onClick={() => setIsLoginModalOpen(true)}
+                className="nav-lang-btn group border-primary/20"
+                title="Acceso Administrativo"
+              >
+                <Zap size={16} className="group-hover:scale-110 transition-transform text-primary" />
+              </button>
+            )}
+
+            {/* Desktop Actions */}
+            <div className="hidden md:block">
+              {isAdmin ? (
+                <button 
+                  onClick={logout} 
+                  className="nav-btn-logout"
+                  aria-label="Cerrar sesión administrador"
+                >
+                  <LogOut size={14} />
+                  {t('admin.logout')}
+                </button>
+              ) : (
+                <a 
+                  href="#contact" 
+                  className="nav-btn-hire"
+                  aria-label="Contactar para contratación"
+                >
+                  <span>{t('nav.hire')}</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                </a>
+              )}
+            </div>
+
+            {/* Mobile Menu Toggle */}
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="nav-mobile-toggle"
+              aria-label="Abrir menú de navegación"
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
+        </motion.div>
+      </div>
+
+      <AnimatePresence mode="wait">
+        {isMobileMenuOpen && (
+          <MobileMenu 
+            isOpen={isMobileMenuOpen} 
+            onClose={() => setIsMobileMenuOpen(false)} 
+            isAdmin={isAdmin}
+            onLogout={logout}
+          />
+        )}
+      </AnimatePresence>
+
+      <LoginModal 
+        isOpen={isLoginModalOpen} 
+        onClose={() => setIsLoginModalOpen(false)} 
+        onLoginSuccess={handleLoginSuccess}
+      />
+    </nav>
+  );
+};
+
+export default Navigation;

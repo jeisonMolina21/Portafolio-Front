@@ -1,0 +1,192 @@
+---
+import Layout from '../../layouts/MainLayout.astro';
+import Navbar from '../../components/modern/Navbar';
+import Footer from '../../components/modern/Footer';
+import { ArrowLeft, Zap, Target, Award, Github, ExternalLink } from 'lucide-react';
+
+export async function getStaticPaths() {
+  return [
+    { params: { slug: 'hermes' } },
+    { params: { slug: 'kairós' } },
+    { params: { slug: 'saas-e-commerce' } },
+  ];
+}
+
+const { slug } = Astro.params;
+
+const projectDataMap: Record<string, {
+  title: string;
+  tagline: string;
+  problem: string;
+  action: string;
+  result: string;
+  architecture: string;
+  learnings: string;
+  tech: string[];
+  github_url?: string;
+  demo_url?: string;
+}> = {
+  hermes: {
+    title: "Hermes: Automatización Microsoft 365",
+    tagline: "De 40 horas a 5 minutos",
+    problem: "Talento Humano gastaba 1 semana cada semestre creando +500 cuentas de estudiantes una por una de forma manual.",
+    action: "Diseñé un motor de automatización en Python usando Microsoft Graph API que integra la creación de identidades, asignación de licencias por volumen y configuración de grupos de seguridad.",
+    result: "40h → 5min. Implementado con éxito durante 3 semestres consecutivos con un margen de error del 0%.",
+    architecture: "Excel Master List → Python Engine → Graph API → Azure AD / M365",
+    learnings: "Gestión de Rate Limits de APIs empresariales, manejo de excepciones en flujos masivos y optimización de scripts PowerShell para integración híbrida.",
+    tech: ["Python", "Microsoft Graph API", "PowerShell", "Docker", "Pandas"],
+    github_url: "https://github.com/jeisonmolina/hermes",
+    demo_url: "https://github.com/jeisonmolina/hermes#architecture"
+  },
+  'kairós': {
+    title: "Kairós: Automatización de Carnetización",
+    tagline: "Control de acceso inteligente y masivo",
+    problem: "Proceso lento y manual en la asignación, generación y verificación de carnets digitales para miles de estudiantes en U. Horizonte.",
+    action: "Desarrollé un sistema de orquestación de datos con Node.js y React para la carga masiva y generación dinámica de credenciales digitales con códigos QR seguros.",
+    result: "Reducción de tiempos de entrega en un 95% y eliminación total del costo de impresión de carnets físicos.",
+    architecture: "React Client → Node.js API → QR Code Engine → Database Store",
+    learnings: "Optimización de renderizado PDF en el frontend/backend, control de concurrencia y flujo de firmas criptográficas para códigos QR.",
+    tech: ["React", "Node.js", "MySQL", "Docker", "jsPDF"],
+    github_url: "https://github.com/jeisonmolina/kairos",
+    demo_url: "https://github.com/jeisonmolina/kairos#demo"
+  },
+  'saas-e-commerce': {
+    title: "SaaS E-Commerce: Core Transaccional",
+    tagline: "Plataforma multitenant de alto rendimiento",
+    problem: "Necesidad de una infraestructura e-commerce capaz de escalar dinámicamente con múltiples tiendas independientes compartiendo el mismo núcleo transaccional.",
+    action: "Implementé la arquitectura backend en Node.js, aislando los datos por inquilino (multitenancy) mediante esquemas dinámicos de base de datos y optimizando las consultas SQL.",
+    result: "Soporte para más de 10,000 transacciones simultáneas con tiempos de respuesta inferiores a los 100ms.",
+    architecture: "Multi-tenant Client → API Gateway → Shop Microservices → Partitioned DB",
+    learnings: "Estrategias de bases de datos compartidas (sharding lógico), diseño e integración segura con pasarelas de pago y cache en memoria.",
+    tech: ["Node.js", "Express", "MySQL", "Sequelize", "Redis"],
+    github_url: "https://github.com/jeisonmolina/saas-ecommerce",
+    demo_url: "https://github.com/jeisonmolina/saas-ecommerce#specs"
+  }
+};
+
+const projectData = projectDataMap[slug as keyof typeof projectDataMap] || {
+    title: "Proyecto en Detalle",
+    tagline: "Optimizando procesos de alto impacto",
+    problem: "Cargando datos del proyecto...",
+    action: "",
+    result: "",
+    architecture: "",
+    learnings: "",
+    tech: []
+};
+---
+
+<Layout title={projectData.title}>
+  <Navbar client:load />
+
+  <div class="min-h-screen bg-slate-950 selection:bg-primary/30 selection:text-white relative pt-32 pb-20">
+    <div class="container-custom">
+      <a href="/" class="inline-flex items-center gap-2 text-white/50 hover:text-white mb-12 transition-colors group">
+        <ArrowLeft size={16} class="group-hover:-translate-x-2 transition-transform" />
+        Volver al Inicio
+      </a>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-20">
+        <div class="lg:col-span-8">
+          <h1 class="text-5xl md:text-7xl font-black text-white mb-6 leading-none">
+            {projectData.title.split(':')[0]}<br/>
+            <span class="text-primary italic">{projectData.title.split(':')[1] || ''}</span>
+          </h1>
+          <p class="text-2xl text-primary-bright font-bold mb-16">{projectData.tagline}</p>
+
+          <div class="space-y-20">
+            <section>
+              <h2 class="text-xs font-black uppercase tracking-[0.4em] text-white/30 mb-8 flex items-center gap-4">
+                <span class="w-8 h-px bg-white/10"></span> EL DOLOR (EL PROBLEMA)
+              </h2>
+              <p class="text-xl text-white/80 leading-relaxed italic border-l-4 border-primary pl-8">
+                "{projectData.problem}"
+              </p>
+            </section>
+
+            <section>
+              <h2 class="text-xs font-black uppercase tracking-[0.4em] text-white/30 mb-8 flex items-center gap-4">
+                <span class="w-8 h-px bg-white/10"></span> MI ROL Y SOLUCIÓN
+              </h2>
+              <p class="text-xl text-white/70 leading-relaxed">
+                {projectData.action}
+              </p>
+            </section>
+
+            {projectData.architecture && (
+              <section class="bg-white/5 rounded-3xl p-10 border border-white/10">
+                <h2 class="text-xs font-black uppercase tracking-[0.4em] text-white/30 mb-8">ARQUITECTURA DEL SISTEMA</h2>
+                <div class="flex flex-wrap items-center gap-6 text-lg font-mono">
+                  {projectData.architecture.split(' → ').map((step, i, arr) => (
+                    <>
+                      <span class="px-6 py-3 bg-slate-900 rounded-xl border border-white/5 text-white">{step}</span>
+                      {i < arr.length - 1 && <span class="text-primary-bright">→</span>}
+                    </>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            <section>
+              <h2 class="text-xs font-black uppercase tracking-[0.4em] text-white/30 mb-8 flex items-center gap-4">
+                <span class="w-8 h-px bg-white/10"></span> RESULTADO (EL IMPACTO)
+              </h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-8 bg-primary/10 rounded-3xl border border-primary/20">
+                  <div class="text-4xl font-black text-primary-bright mb-2">
+                    {slug === 'hermes' ? '40h → 5min' : 'Optimizado'}
+                  </div>
+                  <p class="text-white/60">Ahorro de tiempo operativo semanal</p>
+                </div>
+                <div class="p-8 bg-emerald-500/10 rounded-3xl border border-emerald-500/20">
+                  <div class="text-4xl font-black text-emerald-400 mb-2">0 Errores</div>
+                  <p class="text-white/60">Precisión en despliegue masivo</p>
+                </div>
+              </div>
+            </section>
+
+            {projectData.learnings && (
+              <section>
+                <h2 class="text-xs font-black uppercase tracking-[0.4em] text-white/30 mb-8 flex items-center gap-4">
+                  <span class="w-8 h-px bg-white/10"></span> LECCIONES APRENDIDAS
+                </h2>
+                <p class="text-lg text-white/60 leading-relaxed">
+                  {projectData.learnings}
+                </p>
+              </section>
+            )}
+          </div>
+        </div>
+
+        <div class="lg:col-span-4">
+          <div class="sticky top-32 space-y-12">
+            <div class="p-8 bg-white/5 rounded-3xl border border-white/10">
+              <h3 class="text-xs font-black uppercase tracking-[0.4em] text-white/30 mb-8">STACK TÉCNICO</h3>
+              <div class="flex flex-wrap gap-3">
+                {projectData.tech.map(t => (
+                  <span class="px-4 py-2 bg-white/5 rounded-full text-xs font-bold text-white/80 border border-white/10">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-4">
+              {projectData.github_url && (
+                <a href={projectData.github_url} target="_blank" rel="noopener noreferrer" class="w-full justify-center py-5 flex items-center justify-center bg-primary text-white font-bold rounded-2xl hover:bg-primary-bright transition-all text-center">
+                  <ExternalLink size={20} class="mr-2" /> Ver Código en GitHub
+                </a>
+              )}
+              {projectData.demo_url && (
+                <a href={projectData.demo_url} target="_blank" rel="noopener noreferrer" class="w-full justify-center py-5 border border-white/10 rounded-2xl flex items-center justify-center hover:bg-white/5 transition-all text-white text-center">
+                  <Zap size={20} class="mr-2" /> Solicitar Demo
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <Footer client:load />
+</Layout>

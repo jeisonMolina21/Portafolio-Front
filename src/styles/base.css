@@ -1,0 +1,117 @@
+
+:root {
+  /* Color Palette - Premium Dark Mode (Obsidian & Crimson) */
+  --color-bg-deep: #050202;
+  --color-bg-surface: #0a0505;
+  --color-primary: #991b1b;
+  --color-primary-bright: #dc2626;
+  --color-primary-glow: rgba(220, 38, 38, 0.4);
+  --color-wine-light: #fca5a5;
+  --color-wine-dark: #450a0a;
+  --color-wine-vibrant: #b91c1c;
+  --color-wine-muted: #7f1d1d;
+  
+  --color-text-main: #f5f5f4; /* Stone 100 - Editorial warm beige text */
+  --color-text-dim: #a8a29e;  /* Stone 400 - Warm grey description text */
+  --color-text-muted: #78716c; /* Stone 500 */
+  
+  --glass-bg: rgba(10, 5, 5, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --glass-border-hover: rgba(153, 27, 27, 0.5);
+  
+  --anim-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --anim-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --glow-intensity: 0 0 40px var(--color-primary-glow);
+  --radius-premium: 24px;
+}
+
+:root.light {
+  /* Color Palette - Premium Light Mode (Cream & Charcoal) */
+  --color-bg-deep: #f7f4f0;    /* Premium Cream background */
+  --color-bg-surface: #eae6e0; /* Elevated surface cream */
+  --color-primary: #b91c1c;    /* Vibrant Wine Red */
+  --color-primary-bright: #dc2626;
+  --color-primary-glow: rgba(185, 28, 28, 0.2);
+  --color-wine-light: #fca5a5;
+  --color-wine-dark: #7f1d1d;
+  --color-wine-vibrant: #b91c1c;
+  --color-wine-muted: #991b1b;
+  
+  --color-text-main: #1c1917;  /* Stone 900 - Rich charcoal text */
+  --color-text-dim: #57534e;   /* Stone 600 - Muted text */
+  --color-text-muted: #78716c; /* Stone 500 */
+  
+  --glass-bg: rgba(234, 230, 224, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-border-hover: rgba(185, 28, 28, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg-deep);
+  background-image: 
+    radial-gradient(circle at 0% 0%, rgba(185, 28, 28, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(127, 29, 29, 0.04) 0%, transparent 50%);
+  color: var(--color-text-main);
+  font-family: 'Inter', system-ui, sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+  line-height: 1.6;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.5s var(--anim-ease), color 0.5s var(--anim-ease);
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+}
+
+/* Premium Glass Container V3 */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+  transition: all 0.6s var(--anim-ease);
+}
+
+.glass:hover {
+  border-color: var(--glass-border-hover);
+  background: rgba(20, 5, 5, 0.6);
+  box-shadow: 0 15px 50px -5px rgba(153, 27, 27, 0.15);
+  transform: translateY(-2px);
+}
+
+
+.wine-gradient {
+  background: linear-gradient(135deg, #fff 10%, var(--color-wine-light) 40%, var(--color-primary-bright) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(153, 27, 27, 0.2));
+}
+
+.text-gradient-cinematic {
+  background: linear-gradient(135deg, #ffffff 20%, #0ea5e9 60%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(14, 165, 233, 0.25));
+}
+
+/* Scrollbar Refinement */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg-deep); }
+::-webkit-scrollbar-thumb { 
+  background: rgba(255, 255, 255, 0.05); 
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+

@@ -1,0 +1,66 @@
+
+.about-section {
+    @apply relative overflow-hidden py-24 bg-midnight;
+}
+
+.about-section-decor {
+    @apply absolute top-0 right-0 w-1/2 h-full bg-secondary/5 skew-x-12 transform origin-top-right -z-10;
+}
+
+.about-header-grid {
+    @apply grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20;
+}
+
+.about-header-left {
+    @apply lg:col-span-8;
+}
+
+.about-title {
+    @apply text-[12vw] lg:text-[7vw] font-display font-black leading-[0.8] tracking-tighter uppercase text-text-main;
+}
+
+.about-header-right {
+    @apply lg:col-span-4 flex items-end;
+}
+
+.about-description-text {
+    @apply text-text-dim text-sm font-sans font-light uppercase tracking-widest leading-relaxed border-l border-primary/30 pl-6;
+}
+
+.about-specialties-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/5;
+}
+
+.about-specialty-card {
+    @apply relative p-10 bg-surface hover:bg-primary/5 transition-all duration-700;
+}
+
+.about-specialty-tag {
+    @apply absolute top-6 right-6 text-[10px] font-mono text-primary/40 font-bold uppercase tracking-[0.2em];
+}
+
+.about-specialty-icon-box {
+    @apply text-primary mb-12 transform group-hover:scale-110 transition-transform duration-500;
+}
+
+.about-specialty-metric-value {
+    @apply text-4xl font-display font-black text-text-main group-hover:text-primary transition-colors tracking-tighter;
+}
+
+.about-specialty-metric-label {
+    @apply text-[10px] font-mono font-bold text-white/40 uppercase tracking-[0.2em];
+}
+
+.about-specialty-title {
+    @apply text-lg font-display font-black text-text-main uppercase tracking-tight mb-4;
+}
+
+.about-specialty-desc {
+    @apply text-text-dim text-sm font-light leading-relaxed;
+}
+
+.about-specialty-highlight-bar {
+    @apply absolute bottom-0 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left;
+}
+
+

@@ -1,0 +1,123 @@
+/* ── Skeuomorphic CyberTerminal Component Styles ── */
+.cyber-terminal-container {
+  border-radius: 24px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 540px;
+  backdrop-filter: blur(24px);
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    12px 12px 32px rgba(0, 0, 0, 0.7),
+    -6px -6px 20px rgba(14, 165, 233, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+html.light .cyber-terminal-container {
+  background: linear-gradient(145deg, #ffffff, #f1f5f9);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 
+    10px 10px 25px rgba(15, 23, 42, 0.1),
+    -8px -8px 20px rgba(255, 255, 255, 0.9),
+    inset 0 1px 2px rgba(255, 255, 255, 1);
+}
+
+.cyber-terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.cyber-terminal-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cyber-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.cyber-dot-red { background: #ef4444; }
+.cyber-dot-yellow { background: #f59e0b; }
+.cyber-dot-green { background: #10b981; }
+
+.cyber-terminal-title {
+  font-size: 10px;
+  font-family: monospace;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.cyber-terminal-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.cyber-tab-btn {
+  font-size: 10px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.cyber-terminal-body {
+  padding: 20px;
+  min-height: 260px;
+  position: relative;
+}
+
+.cyber-code-block {
+  font-family: Consolas, Monaco, monospace;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+
+html.light .cyber-code-block {
+  color: #0F172A;
+}
+
+.cyber-arch-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.cyber-metric-card {
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.cyber-terminal-footer {
+  padding: 10px 18px;
+  background: rgba(2, 6, 23, 0.6);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 9px;
+  color: #94a3b8;
+  font-family: monospace;
+}
